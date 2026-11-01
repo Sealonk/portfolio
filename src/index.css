@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* Mengaktifkan dark mode berbasis class */
+@theme {
+  --color-dark-bg: #0f172a; /* slate-950 */
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-900 transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
