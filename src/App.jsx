@@ -698,7 +698,7 @@ export default function App() {
           
           <a href="#" onClick={(e) => scrollToSection(e, 'section-0')} className="flex items-center gap-2 shrink-0 active:scale-95 transition-transform">
             <img 
-              src={isDark ? "/Gemini_Generated_Image_d3o0kqd3o0kqd3o0.png" : "/Gemini_Generated_Image_ehjs18ehjs18ehjs.png"} 
+              src={isDark ? "/Gemini_Generated_Image_d3o0kqd3o0kqd3o0.webp" : "/Gemini_Generated_Image_ehjs18ehjs18ehjs.webp"} 
               alt="Andre Logo" 
               className="h-8 md:h-10 w-auto object-contain"
             />
@@ -727,7 +727,7 @@ export default function App() {
               {isDark ? <Sun size={16} className="md:w-5 md:h-5"/> : <Moon size={16} className="md:w-5 md:h-5"/>}
             </button>
             
-            <a href="ISI_LINK_GOOGLE_DRIVE_PDF_ANDA_DISINI" target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-full text-sm font-semibold hover:scale-105 transition-all shadow-md">
+            <a href="https://drive.google.com/file/d/1ZEU5l_gF-ii8SdWpeyayvqnS0K859GGZ/view?usp=sharing" target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-full text-sm font-semibold hover:scale-105 transition-all shadow-md">
               <FileText size={16} /> {lang === 'en' ? 'View CV' : 'Lihat CV'}
             </a>
 
@@ -803,7 +803,7 @@ export default function App() {
           <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-md aspect-[4/5] md:h-[575px] bg-gray-100 dark:bg-slate-900 rounded-[2rem] md:rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl overflow-hidden relative flex items-end justify-center group">
              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-slate-50 dark:from-cyan-900/20 dark:to-slate-900 transition-colors"></div>
              <img 
-               src="/IMG_10011127.png" 
+               src="/IMG_10011127.webp" 
                alt="Andre Portrait" 
                className="w-full h-full object-cover object-top relative z-10 group-hover:scale-105 transition-transform duration-500" 
                onError={(e) => {
