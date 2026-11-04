@@ -235,6 +235,13 @@ export default function App() {
         "Mengelola akun resmi YouTube dan TikTok Himatro Unila. Berhasil mencapai 100% kuota posting bulanan dan KPI views.",
         "Melakukan dokumentasi lapangan secara langsung, mengoperasikan peralatan kamera, dan melatih anggota tentang teknik fotografi/videografi yang tepat.",
         "Berkolaborasi dengan Sekretaris, Ketua Divisi, dan Ketua Departemen untuk menyusun Laporan Pertanggungjawaban (LPJ) 3 bulanan dan presentasi Musyawarah Besar akhir periode."
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/lIb30IX.jpeg", caption_en: "Photo of the 2024 Himatro executive board", caption_id: "Foto kepengurusan Himatro 2024" },
+        { url: "https://i.imgur.com/s1sRurI.jpeg", caption_en: "2023 Himatro Executive Board Orientation", caption_id: "Orientasi pengurus Himatro 2023" },
+        { url: "https://i.imgur.com/vx8aniZ.jpeg", caption_en: "Himatro 2024 Workshop", caption_id: "Lokakarya Himatro 2024" },
+        { url: "https://i.imgur.com/zxzgcgp.jpeg", caption_en: "Photos from the Himatro 2024 DIODA (Basic Training and Orientation) event", caption_id: "Foto saat kegiatan DIODA (Diklat dan Orientasi Dasar) Himatro 2024" },
+        { url: "https://i.imgur.com/W7mBLBO.jpeg", caption_en: "Company Visit to PT. Perkebunan Nusantara I Regional 7", caption_id: "Visitasi perusahaan ke PT. Perkebunan Nusantara I Regional 7" }
       ]
     },
     {
