@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Moon, Sun, Globe, Mail, Smartphone, ExternalLink, ArrowUpDown, Printer, FileCheck, ZoomIn, FileText, Menu, X, Download } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Moon, Sun, Globe, Mail, Smartphone, ExternalLink, ArrowUpDown, Printer, FileCheck, ZoomIn, FileText, Menu, X } from 'lucide-react';
 
 // Komponen SVG untuk logo brand
 const GithubIcon = () => (
@@ -30,7 +30,6 @@ const ProjectSlider = ({ project, lang }) => {
   const handleMouseDown = (e) => { setIsDragging(true); setStartX(e.pageX); };
   const handleMouseMove = (e) => { if (!isDragging) return; e.preventDefault(); setDragOffset(e.pageX - startX); };
   
-  // TOUCH EVENTS UNTUK MOBILE
   const handleTouchStart = (e) => { setIsDragging(true); setStartX(e.touches[0].clientX); };
   const handleTouchMove = (e) => { if (!isDragging) return; setDragOffset(e.touches[0].clientX - startX); };
   
@@ -95,6 +94,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedExp, setSelectedExp] = useState(null);
   const [selectedEdu, setSelectedEdu] = useState(null);
+  const [selectedAward, setSelectedAward] = useState(null);
   const [zoomedImage, setZoomedImage] = useState(null);
   
   const [modalActiveCategory, setModalActiveCategory] = useState('All');
@@ -103,27 +103,24 @@ export default function App() {
   useEffect(() => {
     if (isDark) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
-    
-    // Update Judul Tab Browser secara dinamis
     document.title = "Andre Manullang | Cloud & Backend Engineer";
   }, [isDark]);
 
-  // Handle Smooth Scrolling
   const scrollToSection = (e, id) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    setIsMobileMenuOpen(false); // Tutup menu mobile jika sedang terbuka
+    setIsMobileMenuOpen(false);
   };
 
   const t = {
     en: {
-      nav: ['About', 'Tech Stack', 'Education', 'Experience', 'Projects', 'Certificates', 'Contact'],
+      nav: ['About', 'Tech Stack', 'Education', 'Experience', 'Projects', 'Awards', 'Certificates', 'Contact'],
       sectionEdu: "Education Background",
       heroBadge: "Hello, I'm Aloysius Andre Nathanael Hasudungan Manullang 👨‍💻",
-      heroTitle: "I Architect And Build Cloud Systems That Scale.",
+      heroTitle: "I Architect and Build Scalable Cloud Systems",
       heroDesc: "I am a Cloud and Backend Engineer primarily passionate about Cloud Computing infrastructure. My expertise includes architecting Virtual Machines such as Compute Engine and EC2, configuring auto-scaling, load balancing, and network firewalls. Secondarily, I specialize in building robust backend APIs using Node.js, Express, and MySQL. Additionally, I am highly proficient in English, possessing a native-like accent and excellent verbal communication skills.",
       btnWork: "View My Work",
       btnAbout: "About Me",
@@ -136,19 +133,22 @@ export default function App() {
       sectionSkills: "Tech Stack & Skills",
       sectionExp: "Professional Experience",
       sectionProj: "Featured Projects",
-      sectionCert: "Certificates & Awards",
+      sectionAwards: "Honors & Awards",
+      sectionCert: "Certificates & Credentials",
       sectionCertDesc: "Highlight of my professional & academic credentials.",
       sectionContact: "Let's Talk",
       contactDesc: "Feel free to reach out for collaborations, cloud architecture discussions, or just a friendly hello.",
       modalTitle: "Certificate Archive",
       btnAllCerts: "View All Certificates",
       btnView: "View",
+      emailMe: "Email Me",
+      footerRight: "All rights reserved.",
     },
     id: {
-      nav: ['Tentang', 'Teknologi', 'Pendidikan', 'Pengalaman', 'Proyek', 'Sertifikat', 'Kontak'],
+      nav: ['Tentang', 'Teknologi', 'Pendidikan', 'Pengalaman', 'Proyek', 'Penghargaan', 'Sertifikat', 'Kontak'],
       sectionEdu: "Riwayat Pendidikan",
       heroBadge: "Halo, Saya Aloysius Andre Nathanael Hasudungan Manullang 👨‍💻",
-      heroTitle: "Saya Merancang Dan Membangun Sistem Cloud Skalabel.",
+      heroTitle: "Saya Merancang dan Membangun Sistem Scalable Cloud",
       heroDesc: "Saya seorang Cloud dan Backend Engineer dengan passion utama pada infrastruktur Cloud Computing—merancang Virtual Machine seperti Compute Engine dan EC2, mengonfigurasi auto-scaling, load balancing, dan network firewall. Selain itu, saya berfokus membangun backend API yang tangguh menggunakan Node.js, Express, dan MySQL. Saya juga sangat fasih berbahasa Inggris, memiliki aksen native-like, dan keterampilan komunikasi verbal yang sangat baik.",
       btnWork: "Lihat Karya Saya",
       btnAbout: "Tentang Saya",
@@ -161,19 +161,22 @@ export default function App() {
       sectionSkills: "Keahlian & Teknologi",
       sectionExp: "Pengalaman Profesional",
       sectionProj: "Proyek Pilihan",
-      sectionCert: "Sertifikat & Penghargaan",
-      sectionCertDesc: "Sorotan kredensial profesional & akademik saya.",
+      sectionAwards: "Penghargaan & Kompetisi",
+      sectionCert: "Sertifikat & Kredensial",
+      sectionCertDesc: "Sorotan kualifikasi profesional & akademik saya.",
       sectionContact: "Mari Berdiskusi",
       contactDesc: "Jangan ragu untuk menghubungi saya untuk kolaborasi, diskusi arsitektur cloud, atau sekadar menyapa.",
       modalTitle: "Arsip Seluruh Sertifikat",
       btnAllCerts: "Lihat Semua Sertifikat",
       btnView: "Lihat",
+      emailMe: "Email Saya",
+      footerRight: "Hak cipta dilindungi undang-undang.",
     }
   };
 
   const content = t[lang];
 
-  // DATA PENGALAMAN (Perbaikan Tanggal Bilingual)
+  // DATA PENGALAMAN 
   const experiences = [
     {
       role: "IT Developer",
@@ -213,7 +216,7 @@ export default function App() {
       ]
     },
     {
-      role: "Head of Project & Video Editor (Himatro on Video)",
+      role: "Head of Project & Video Editor",
       company: "Himatro Unila",
       date_en: "Mar 2023 - Feb 2025", 
       date_id: "Mar 2023 - Feb 2025",
@@ -284,6 +287,7 @@ export default function App() {
     }
   ];
 
+  // DATA PENDIDIKAN (Tanpa Gallery, dengan poin-poin yang lebih terfokus & detail)
   const educationData = [
     {
       level_en: "Bachelor's Degree", level_id: "S1 (Sarjana)",
@@ -296,35 +300,16 @@ export default function App() {
       long_desc_en: "Pursued a comprehensive degree in Informatics Engineering with a specialization in Software Engineering. Throughout my academic journey, I balanced rigorous coursework with active organizational leadership (Himatro) and elite national programs (Bangkit Academy). Culminated my studies by defending an integrated machine-learning clinical nutrition system for RSUD Pringsewu, officially graduating with Cum Laude honors in September 2026.",
       long_desc_id: "Menempuh pendidikan Sarjana Teknik Informatika dengan spesialisasi Rekayasa Perangkat Lunak (RPL). Selama perjalanan akademik, saya menyeimbangkan perkuliahan yang ketat dengan kepemimpinan organisasi aktif (Himatro) dan program nasional elit (Bangkit Academy). Menyelesaikan masa studi dengan mempertahankan sistem gizi klinis berbasis machine learning untuk RSUD Pringsewu, dan resmi diwisuda dengan predikat Pujian (Cum Laude) pada September 2026.",
       points_en: [
-        "Actively participated in campus life and leadership through the Himatro cadre programs and official Period 1 roster.",
-        "Selected for the prestigious Bangkit Academy (MSIB) Cloud Computing cohort.",
-        "Executed the Kuliah Kerja Nyata (KKN) community service program in Purwosari Village, Central Lampung.",
-        "Led the organizational multimedia branch and successfully demissioned as the Head of Project for Himatro.",
-        "Completed a Practical Work (KP) internship at PTPN I Regional 7, developing the 'Simpelkes' web system.",
-        "Awarded the Silver Award at the iTaLiiC (ECHOPEN) International Academic Competition.",
-        "Conducted intensive thesis research and deployed the Si-Gizi clinical nutrition system at RSUD Pringsewu.",
-        "Demonstrated English proficiency with an EPT Score of 597 from UPT Bahasa Unila.",
-        "Passed the Comprehensive Exam and officially graduated as a Bachelor of Engineering (S.T.).",
-        "Achieved an outstanding GPA of 3.85 out of 146 SKS.",
-        "Awarded the Cum Laude (Pujian) Graduation Honors."
+        "Led the Bangkit Academy (MSIB) Cloud Computing cohort, ultimately architecting and deploying secure backend infrastructures on Google Cloud Platform.",
+        "Developed and defended the Si-Gizi clinical nutrition system thesis project, integrating a GRU machine learning model for hospital food forecasting at RSUD Pringsewu.",
+        "Executed 40 days of community service (KKN) in Padang Ratu, Central Lampung, focusing on village administration digitization and educational outreach.",
+        "Served as Head of Project for Himatro Unila, efficiently managing organizational workflows and directing comprehensive multimedia productions."
       ],
       points_id: [
-        "Berpartisipasi aktif dalam kehidupan dan kepemimpinan kampus melalui program kader Himatro dan kepengurusan Periode 1.",
-        "Terpilih mengikuti program bergengsi Bangkit Academy (MSIB) jalur Cloud Computing.",
-        "Melaksanakan program pengabdian masyarakat Kuliah Kerja Nyata (KKN) di Desa Purwosari, Lampung Tengah.",
-        "Memimpin cabang multimedia organisasi dan sukses demisioner sebagai Ketua Pelaksana (Head of Project) Himatro.",
-        "Menyelesaikan Kerja Praktik (KP) di PTPN I Regional 7 dengan mengembangkan sistem web 'Simpelkes'.",
-        "Meraih Silver Award pada kompetisi akademik internasional iTaLiiC (ECHOPEN).",
-        "Melakukan penelitian skripsi intensif dan men-deploy sistem gizi klinis (Si-Gizi) di RSUD Pringsewu.",
-        "Mendemonstrasikan kemampuan Bahasa Inggris dengan pencapaian skor EPT 597 dari UPT Bahasa Unila.",
-        "Lulus Ujian Komprehensif dan resmi diwisuda sebagai Sarjana Teknik (S.T.).",
-        "Meraih Indeks Prestasi Kumulatif (IPK) yang sangat memuaskan, yaitu 3.85 dari total 146 SKS.",
-        "Dianugerahi predikat Kelulusan Pujian (Cum Laude)."
-      ],
-      gallery: [
-        { url: "https://i.imgur.com/UdBDm5l.jpeg", caption_en: "Official Bachelor's Degree Certificate", caption_id: "Ijazah Resmi S.T." },
-        { url: "https://i.imgur.com/lrGzVop.jpeg", caption_en: "Academic Transcript (3.85 GPA)", caption_id: "Transkrip Nilai Akademik (IPK 3.85)" },
-        { url: "https://i.imgur.com/Ckjcv6r.jpeg", caption_en: "Cum Laude Certificate of Excellence", caption_id: "Piagam Penghargaan Predikat Cum Laude" }
+        "Menyelesaikan program Bangkit Academy (MSIB) jalur Cloud Computing, secara spesifik merancang dan mendeploy infrastruktur backend yang aman pada Google Cloud Platform.",
+        "Mengembangkan dan mempertahankan proyek skripsi sistem gizi klinis (Si-Gizi), yang mengintegrasikan model machine learning GRU untuk peramalan makanan di RSUD Pringsewu.",
+        "Melaksanakan Kuliah Kerja Nyata (KKN) selama 40 hari di wilayah Padang Ratu, Lampung Tengah, dengan fokus pada digitalisasi administrasi desa dan penyuluhan edukatif.",
+        "Menjabat sebagai Ketua Pelaksana (Head of Project) Himatro Unila, mengelola alur kerja tim dan mengarahkan keseluruhan produksi multimedia organisasi."
       ]
     },
     {
@@ -338,26 +323,14 @@ export default function App() {
       long_desc_en: "Completed vocational secondary education specializing in Multimedia under the Computer Science and Informatics department. Built comprehensive technical skills across video editing, digital imaging, camera operation, and live audio design through interactive lab sessions, school theater competitions, and filmmaking extracurriculars ('Fiksi'). Underwent rigorous physical and mental discipline training ('Madabintalsik') and successfully passed the National Vocational Competency Exam (UKK) in packaging and poster design.",
       long_desc_id: "Menyelesaikan pendidikan kejuruan dengan spesialisasi Multimedia di bawah jurusan Teknik Komputer dan Informatika. Membangun keterampilan teknis yang komprehensif mencakup editing video, pencitraan digital, pengoperasian kamera, dan desain audio live melalui praktikum lab, kompetisi teater sekolah, serta ekskul pembuatan film ('Fiksi'). Menjalani pelatihan mental dan fisik ('Madabintalsik') dan sukses melampaui Uji Kompetensi Keahlian (UKK) nasional dalam desain kemasan dan poster.",
       points_en: [
-        "Mastered foundational IT and Multimedia subjects including Basic Graphic Design, Computer Systems, Basic Programming, and Digital Simulations.",
-        "Actively engaged in the 'Fiksi' Filmmaking Extracurricular, serving as Offline Editor for short films like 'GEGUDUH' (entered into FLS2N, FFPJ).",
-        "Designed background sound effects and managed live audio controls for school theater competitions during the pandemic.",
-        "Completed mandatory 'Madabintalsik' (Mental & Physical Discipline Training) at Klara Beach under military instruction.",
-        "Adapted to hybrid and digital distance-learning workflows during the COVID-19 pandemic.",
-        "Passed the Vocational Competency Exam (UKK) by designing product packaging, conducting product photo shoots, and assembling physical prototypes.",
+        "Mastered advanced techniques in video editing, digital imaging, and configured live audio control setups for major school theater competitions.",
+        "Served as the primary Offline Editor for the 'GEGUDUH' short film under the 'Fiksi' extracurricular, managing post-production timelines and grading.",
+        "Successfully passed the Vocational Competency Exam (UKK) by presenting a comprehensive project that included end-to-end product packaging and poster design."
       ],
       points_id: [
-        "Menguasai mata pelajaran dasar IT dan Multimedia meliputi Dasar Desain Grafis, Sistem Komputer, Pemrograman Dasar, dan Simulasi Digital.",
-        "Aktif dalam Ekskul Sinematografi 'Fiksi', berperan sebagai Offline Editor untuk film pendek seperti 'GEGUDUH' (diikutsertakan dalam FLS2N, FFPJ).",
-        "Merancang efek suara latar dan mengoperasikan konsol audio live untuk kompetisi teater sekolah saat masa pandemi.",
-        "Menyelesaikan pelatihan karakter dan kedisiplinan wajib 'Madabintalsik' di Pantai Klara di bawah bimbingan instruktur militer.",
-        "Beradaptasi dengan alur pembelajaran daring (hybrid/GSuite) selama masa pandemi COVID-19.",
-        "Lulus Uji Kompetensi Keahlian (UKK) dengan merancang desain kemasan produk, melakukan sesi foto produk, hingga merakit prototipe fisik.",
-      ],
-      gallery: [
-        { url: "https://i.imgur.com/HRqgyE9.jpeg", caption_en: "Official Vocational High School Diploma", caption_id: "Ijazah Resmi SMK Negeri 5 Bandar Lampung" },
-        { url: "https://i.imgur.com/bCZSqiq.jpeg", caption_en: "Official Academic Grade Transcript", caption_id: "Transkrip Nilai Akademik SMK" },
-        { url: "https://i.imgur.com/JsIQloq.jpeg", caption_en: "UKK Certificate of Vocational Competency", caption_id: "Sertifikat Uji Kompetensi Keahlian (UKK)" },
-        { url: "https://i.imgur.com/pJVkwbR.jpeg", caption_en: "UKK Competency Skills Breakdown", caption_id: "Transkrip Nilai Kompetensi Keahlian UKK" }
+        "Menguasai teknik tingkat lanjut dalam editing video, pencitraan digital, serta merancang setup kontrol audio live untuk kompetisi teater besar di sekolah.",
+        "Berperan sebagai Offline Editor utama untuk proyek film pendek 'GEGUDUH' pada ekstrakurikuler 'Fiksi', mengelola timeline pascaproduksi dan color grading.",
+        "Sukses lulus Uji Kompetensi Keahlian (UKK) dengan mempresentasikan proyek komprehensif yang mencakup desain kemasan produk dari awal hingga akhir beserta posternya."
       ]
     },
     {
@@ -371,16 +344,12 @@ export default function App() {
       long_desc_en: "Completed junior high school education with consistent academic performance. Maintained a strong focus on core subjects, demonstrating particular excellence in Information and Communication Technology (TIK) and English, which laid the groundwork for my future specialization in Multimedia and Software Engineering.",
       long_desc_id: "Menyelesaikan pendidikan menengah pertama dengan performa akademik yang konsisten. Mempertahankan fokus yang kuat pada mata pelajaran inti, dan menunjukkan keunggulan khusus dalam Teknologi Informasi dan Komunikasi (TIK) serta Bahasa Inggris, yang meletakkan dasar bagi spesialisasi saya di bidang Multimedia dan Rekayasa Perangkat Lunak di masa depan.",
       points_en: [
-        "Consistently maintained high academic standing across core subjects.",
-        "Achieved near-perfect scores (97/100) in Information and Communication Technology (TIK) and English.",
+        "Consistently maintained an outstanding 97/100 average in Information and Communication Technology (TIK) courses.",
+        "Built a robust foundational understanding of computer systems, digital literacy, and cross-cultural English communication skills."
       ],
       points_id: [
-        "Konsisten mempertahankan kedudukan akademik yang tinggi di seluruh mata pelajaran inti.",
-        "Meraih nilai yang hampir sempurna (97/100) untuk mata pelajaran Teknologi Informasi dan Komunikasi (TIK) dan Bahasa Inggris.",
-      ],
-      gallery: [
-        { url: "https://i.imgur.com/vg0cvGj.jpeg", caption_en: "Official Junior High School Diploma", caption_id: "Ijazah Resmi Sekolah Menengah Pertama" },
-        { url: "https://i.imgur.com/CFCd9uj.jpeg", caption_en: "Official Grade Transcript", caption_id: "Daftar Nilai / Transkrip Akademik" }
+        "Secara konsisten mempertahankan nilai rata-rata luar biasa (97/100) pada mata pelajaran Teknologi Informasi dan Komunikasi (TIK).",
+        "Membangun pemahaman landasan yang kuat mengenai sistem komputer, literasi digital, serta keterampilan komunikasi Bahasa Inggris lintas budaya."
       ]
     },
     {
@@ -394,22 +363,17 @@ export default function App() {
       long_desc_en: "Completed primary education with a strong inclination towards technology and languages. This period marked the early validation of my lifelong interest in IT, demonstrated through formal computer skills training and early participation in national-level applied science and English olympiads.",
       long_desc_id: "Menyelesaikan pendidikan dasar dengan minat yang kuat terhadap teknologi dan bahasa. Periode ini menjadi bukti validasi awal dari ketertarikan jangka panjang saya di bidang IT, dibuktikan melalui pelatihan keterampilan komputer formal dan partisipasi awal dalam olimpiade sains terapan dan Bahasa Inggris tingkat nasional.",
       points_en: [
-        "Competed in the National English and Applied Science Olympic (NEASO) held at Gadjah Mada University (UGM), achieving an 'A-' (Very Good) score in Civics.",
-        "Completed the Computer Skills Education program organized in collaboration with BSW Gramedia, graduating with an 'Excellent' (Baik Sekali) predicate."
+        "Represented the school at the National English and Applied Science Olympic (NEASO) at UGM, securing a highly commended 'A-' score in the Civics category.",
+        "Graduated from the extracurricular BSW Gramedia Computer Skills program, achieving an 'Excellent' predicate in foundational software usage."
       ],
       points_id: [
-        "Berkompetisi dalam National English and Applied Science Olympic (NEASO) yang diselenggarakan di Universitas Gadjah Mada (UGM), meraih skor 'A-' (Sangat Baik) pada subjek Civics.",
-        "Menyelesaikan program Pendidikan Keterampilan Komputer yang bekerja sama dengan BSW Gramedia, lulus dengan predikat 'Baik Sekali'."
-      ],
-      gallery: [
-        { url: "https://i.imgur.com/YeMv5h9.jpeg", caption_en: "Official Elementary School Diploma", caption_id: "Ijazah Resmi Sekolah Dasar" },
-        { url: "https://i.imgur.com/GsTmiiB.jpeg", caption_en: "Official Grade Transcript", caption_id: "Daftar Nilai / Transkrip Akademik" },
-        { url: "https://i.imgur.com/V2q2kII.jpeg", caption_en: "NEASO National Olympic Certificate", caption_id: "Sertifikat Olimpiade Nasional (NEASO)" },
-        { url: "https://i.imgur.com/wXWU1iJ.jpeg", caption_en: "BSW Gramedia Computer Skills Certificate", caption_id: "Sertifikat Keterampilan Komputer BSW Gramedia" }
+        "Mewakili sekolah pada ajang National English and Applied Science Olympic (NEASO) di UGM, dan berhasil meraih skor 'A-' (Sangat Baik) pada kategori Civics.",
+        "Lulus dari program ekstrakurikuler Pendidikan Keterampilan Komputer BSW Gramedia, mencapai predikat 'Baik Sekali' dalam penggunaan software dasar."
       ]
     }
   ];
 
+  // DATA PROYEK
   const projectsData = [
     {
       id: "proj-1",
@@ -427,7 +391,6 @@ export default function App() {
       long_desc_id: "Si-Gizi adalah sistem asesmen gizi klinis dan peramalan pasien komprehensif untuk RSUD Pringsewu. Backend ini mengotomatisasi logika klinis presisi menggunakan rumus Mifflin-St Jeor, estimasi antropometri Ulna/LiLA, dan faktor koreksi untuk 5 penyakit kronis utama (Diabetes Melitus, CKD, Gagal Jantung, Stroke, dan Gastritis). Dikembangkan dengan metode Rapid Application Development (RAD), sistem ini mengintegrasikan endpoint prediktif berbasis model GRU—yang dikerjakan oleh Spesialis AI tim—untuk meramalkan porsi makanan harian dan menekan sisa makanan (food waste) rumah sakit.",
       thumbnail: "https://i.imgur.com/qF9LZLp.png",
       githubUrl: "https://github.com/Sealonk/Sistem-Informasi-Gizi-RSUD-Pringsewu.git",
-      liveUrl: "",
       sliderImages: [
         "https://i.imgur.com/9bA8eiw.png", "https://i.imgur.com/GrHnqWA.png", "https://i.imgur.com/qF9LZLp.png",
         "https://i.imgur.com/8aguRNo.png", "https://i.imgur.com/8WwPEcV.png", "https://i.imgur.com/SQ7zHB6.png",
@@ -471,7 +434,6 @@ export default function App() {
       long_desc_id: "Simpelkes (Sistem Pelaporan Kesehatan) adalah aplikasi web enterprise yang dibangun untuk PTPN I Regional 7 guna mengelola 28 Puskesbun (unit klinik) yang tersebar di tiga provinsi. Berfungsi sebagai Single Source of Truth, sistem ini mendigitalkan rekapitulasi 16 kategori data kesehatan, modul biaya terintegrasi (Biaya Kesehatan, Iuran BPJS, dan Dana Kapitasi), serta master data farmasi (stok dan analisis penggunaan harian). Dikembangkan oleh tim 4 orang menggunakan arsitektur MVC Laravel 10, proyek ini memanfaatkan Google Cloud SQL untuk mengatasi konflik migrasi skema database saat pengembangan bersama.",
       thumbnail: "https://i.imgur.com/CyZ65Yl.png",
       githubUrl: "https://github.com/faqihhmwn/Project-KP-PTPN.git", 
-      liveUrl: "", 
       sliderImages: [
         "https://i.imgur.com/pDTI6nl.png", "https://i.imgur.com/CyZ65Yl.png", "https://i.imgur.com/OZ2CbNc.png",
         "https://i.imgur.com/uLDbjI7.png", "https://i.imgur.com/XSrCLq6.png", "https://i.imgur.com/QdxrFOC.png",
@@ -526,7 +488,6 @@ export default function App() {
       long_desc_id: "Dwitin adalah aplikasi pelacakan keuangan pribadi yang dikembangkan sebagai Capstone Project Bangkit Academy 2024. Aplikasi ini membantu pengguna mencatat pemasukan dan pengeluaran, serta menghitung total saldo secara otomatis untuk membentuk kebiasaan finansial yang lebih baik. Fitur unggulan dari aplikasi ini adalah integrasi model machine learning Optical Character Recognition (OCR) yang memungkinkan pengguna memindai struk belanja (melalui kamera atau galeri); AI akan secara otomatis mengekstrak nama transaksi, total pengeluaran, dan tanggal. Dibangun secara kolaboratif, backend aplikasi ini ditenagai oleh Node.js dan Express.js, di-host pada Google Compute Engine dengan konfigurasi IP Statis, serta memanfaatkan Google Cloud SQL (MySQL) dan Google Cloud Storage (Bucket) untuk menyimpan gambar struk dan foto profil pengguna.",
       thumbnail: "https://i.imgur.com/6E5uR7H.png", 
       githubUrl: "https://github.com/Sealonk/dwitin-backend.git", 
-      liveUrl: "", 
       sliderImages: [
         "https://i.imgur.com/u1K7cvi.png", "https://i.imgur.com/CDoR6Ey.png", "https://i.imgur.com/X8Hze3L.png",
         "https://i.imgur.com/WsEGj5p.png", "https://i.imgur.com/knzrYk2.png", "https://i.imgur.com/8A7kyOS.png",
@@ -557,6 +518,64 @@ export default function App() {
     }
   ];
 
+  // DATA AWARDS & PENGHARGAAN (Section Baru)
+  const awardsData = [
+    {
+      title_en: "Cum Laude Graduation Honors", title_id: "Predikat Kelulusan Pujian (Cum Laude)",
+      issuer: "Universitas Lampung",
+      date_en: "Sep 2026", date_id: "Sep 2026",
+      desc_en: "Awarded the Cum Laude predicate for achieving an outstanding 3.85 GPA out of 146 SKS during my undergraduate studies in Informatics Engineering. This honor reflects my consistent academic excellence and dedication to mastering software engineering and cloud computing.",
+      desc_id: "Dianugerahi predikat Cum Laude (Pujian) karena berhasil meraih IPK 3.85 dari total 146 SKS selama masa studi sarjana Teknik Informatika. Penghargaan ini mencerminkan keunggulan akademik yang konsisten serta dedikasi dalam mendalami rekayasa perangkat lunak dan komputasi cloud.",
+      thumbnail: "https://i.imgur.com/Ckjcv6r.jpeg",
+      gallery: [ { url: "https://i.imgur.com/Ckjcv6r.jpeg", caption_en: "Cum Laude Certificate of Excellence", caption_id: "Piagam Penghargaan Predikat Cum Laude" } ]
+    },
+    {
+      title_en: "Silver Award - iTaLiiC (ECHOPEN)", title_id: "Silver Award - iTaLiiC (ECHOPEN)",
+      issuer: "Universiti Teknologi MARA",
+      date_en: "Jun 2025", date_id: "Jun 2025",
+      desc_en: "Won the Silver Award at the International Academic Competition (iTaLiiC) hosted by Universiti Teknologi MARA. This achievement recognized the successful presentation of an innovative technological project on an international stage, demonstrating applied engineering skills.",
+      desc_id: "Meraih Silver Award pada Kompetisi Akademik Internasional (iTaLiiC) yang diselenggarakan oleh Universiti Teknologi MARA. Pencapaian ini mengakui keberhasilan presentasi proyek teknologi yang inovatif di kancah internasional, menunjukkan keterampilan terapan di bidang teknik.",
+      thumbnail: "https://i.imgur.com/LJR8VEU.png",
+      gallery: [ { url: "https://i.imgur.com/LJR8VEU.png", caption_en: "Silver Award Certificate", caption_id: "Sertifikat Silver Award - iTaLiiC" } ]
+    },
+    {
+      title_en: "Best III Gong Award - FFPJ XI", title_id: "Terbaik III Gong Award - FFPJ XI",
+      issuer: "FFPJ Foundation",
+      date_en: "Dec 2020", date_id: "Des 2020",
+      desc_en: "Awarded Best III in the Gong Award category at the 11th Jogja Student Film Festival (FFPJ). This national-level recognition was granted for exceptional cinematography, storytelling, and post-production editing on a competitive short film project.",
+      desc_id: "Dianugerahi Terbaik III kategori Gong Award pada Festival Film Pelajar Jogja (FFPJ) ke-11. Penghargaan tingkat nasional ini diberikan atas pencapaian luar biasa di bidang sinematografi, penceritaan (storytelling), dan pengeditan pascaproduksi pada proyek film pendek.",
+      thumbnail: "https://i.imgur.com/KKNsaFB.png",
+      gallery: [ { url: "https://i.imgur.com/KKNsaFB.png", caption_en: "Gong Award Certificate", caption_id: "Sertifikat Terbaik III Gong Award" } ]
+    },
+    {
+      title_en: "2nd Place - Fiction Film Competition", title_id: "Juara II - Lomba Film Fiksi",
+      issuer: "MKKS SMK Kota Bandar Lampung",
+      date_en: "Feb 2020", date_id: "Feb 2020",
+      desc_en: "Secured 2nd place in the city-wide vocational high school (SMK) fiction film competition. As a core multimedia team member, I contributed extensively to the video editing and digital imaging processes that led the project to victory.",
+      desc_id: "Meraih Juara 2 pada lomba film fiksi tingkat SMK se-Kota Bandar Lampung. Sebagai anggota inti tim multimedia, saya berkontribusi besar pada proses pengeditan video dan pencitraan digital yang mengantarkan proyek ini meraih kemenangan.",
+      thumbnail: "https://i.imgur.com/RBaqqlR.png",
+      gallery: [ { url: "https://i.imgur.com/RBaqqlR.png", caption_en: "2nd Place Fiction Film Certificate", caption_id: "Sertifikat Juara 2 Lomba Film Fiksi" } ]
+    },
+    {
+      title_en: "2nd Place - Talent & Interest Festival", title_id: "Juara 2 - Gebyar Minat & Bakat",
+      issuer: "SMK Negeri 4 Bandar Lampung",
+      date_en: "2020", date_id: "2020",
+      desc_en: "Achieved 2nd place in the local talent and interest festival by showcasing advanced multimedia and creative skills. The event highlighted practical abilities in digital arts and technical execution.",
+      desc_id: "Meraih Juara 2 pada festival minat dan bakat lokal dengan menampilkan keterampilan multimedia tingkat lanjut. Acara ini menyoroti kemampuan praktis dalam seni digital dan eksekusi teknis.",
+      thumbnail: "https://i.imgur.com/Ww6okqx.png",
+      gallery: [ { url: "https://i.imgur.com/Ww6okqx.png", caption_en: "Talent Festival Certificate", caption_id: "Sertifikat Juara 2 Gebyar Minat & Bakat" } ]
+    },
+    {
+      title_en: "NEASO National Olympic Competitor", title_id: "Peserta NEASO (Olimpiade Nasional)",
+      issuer: "Universitas Gadjah Mada (UGM)",
+      date_en: "Feb 2014", date_id: "Feb 2014",
+      desc_en: "Competed in the National English and Applied Science Olympic (NEASO) held at Universitas Gadjah Mada (UGM). Representing my school on a national stage, I successfully secured a highly commended 'A-' (Very Good) score in the Civics category.",
+      desc_id: "Berkompetisi dalam ajang National English and Applied Science Olympic (NEASO) yang diselenggarakan di Universitas Gadjah Mada (UGM). Mewakili sekolah di kancah nasional, saya berhasil meraih skor 'A-' (Sangat Baik) pada kategori Civics.",
+      thumbnail: "https://i.imgur.com/V2q2kII.jpeg",
+      gallery: [ { url: "https://i.imgur.com/V2q2kII.jpeg", caption_en: "NEASO Certificate", caption_id: "Sertifikat Olimpiade Nasional (NEASO)" } ]
+    }
+  ];
+
   const allCertificatesData = [
     { title: "Bangkit Academy - Cloud Computing", issuer: "Google, GoTo, Traveloka", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Jan 2025", dateObj: new Date('2025-01-10'), thumbnail: "https://i.imgur.com/7XFH9Qu.png", link: "https://drive.google.com/file/d/1ZX9dQxYVBr2xzPNuceLI-phzHqBEtivS/view?usp=drive_link", featured: true },
     { title: "[New] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026", issuer: "Udemy", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Oct 2026", dateObj: new Date('2026-10-24'), thumbnail: "https://i.imgur.com/krlxayy.jpeg", link: "http://ude.my/UC-cfbf7feb-17a9-4568-9624-df0328ce6bc7", featured: true },
@@ -578,11 +597,7 @@ export default function App() {
     { title: "Studi Independen Bersertifikat Angkatan 7 di Yayasan Dicoding Indonesia", issuer: "Kampus Merdeka", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Dec 2024", dateObj: new Date('2024-12-31'), thumbnail: "https://i.imgur.com/8dZJWkl.png", link: "https://drive.google.com/file/d/1AvYJ3HOY-ASXnBsLosaKo1nnjj6wArBm/view?usp=drive_link", featured: false },
     { title: "AWS Foundations: Getting Started with the AWS Cloud Essentials", issuer: "AWS Training & Certification", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Sep 2026", dateObj: new Date('2026-09-30'), thumbnail: "https://i.imgur.com/LRgtQLv.png", link: "https://drive.google.com/file/d/1mzV5dR3Q6ayP0AaizomzWXB2kOz5daWz/view?usp=drive_link", featured: false },
     { title: "Google Cloud Computing Foundations Certificate", issuer: "Google Cloud", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Oct 2024", dateObj: new Date('2024-10-02'), thumbnail: "https://images.credly.com/size/340x340/images/4dda8ae4-99ee-476c-bca3-6f0adbab42fe/image.png", link: "https://www.credly.com/badges/d75e6426-7137-4b41-9841-38da1cc3afd9/public_url", featured: true },
-    { title: "Silver Award - iTaLiiC (ECHOPEN)", issuer: "Universiti Teknologi MARA", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Jun 2025", dateObj: new Date('2025-06-27'), thumbnail: "https://i.imgur.com/LJR8VEU.png", link: "https://drive.google.com/file/d/1GADhyoozIVdGt6ROp-_f13RToB-XlpJs/view?usp=drive_link", featured: true },
-    { title: "Juara II - Lomba Film Fiksi", issuer: "MKKS SMK Kota Bandar Lampung", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Feb 2020", dateObj: new Date('2020-02-21'), thumbnail: "https://i.imgur.com/RBaqqlR.png", link: "https://drive.google.com/file/d/1smg_RYdidBYbBTlz48x5el9IWdu_lvy_/view?usp=drive_link", featured: false },
-    { title: "Juara 2 - Gebyar Minat & Bakat", issuer: "SMK Negeri 4 Bandar Lampung", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "2020", dateObj: new Date('2020-01-01'), thumbnail: "https://i.imgur.com/Ww6okqx.png", link: "https://drive.google.com/file/d/1RPMIbIm5EGfoMe0KNfCBvvpqbYm20Cat/view?usp=drive_link", featured: false },
-    { title: "Terbaik III Gong Award - Festival Film Pelajar Jogja XI", issuer: "FFPJ Foundation", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Dec 2020", dateObj: new Date('2020-12-17'), thumbnail: "https://i.imgur.com/KKNsaFB.png", link: "https://drive.google.com/file/d/1hXzglQaeCvj3Haabo6lbJ0_255QLJKsM/view?usp=drive_link", featured: false },
-    { title: "Praktik Kerja Lapangan di PT Perkebunan Nusantara I Regional 7", issuer: "PT Perkebunan Nusantara I Regional 7", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Oct 2025", dateObj: new Date('2025-10-02'), thumbnail: "https://i.imgur.com/6D2kK8v.jpeg", link: "https://drive.google.com/file/d/15Y57Ws_UEeTmNnEo8kU8XPtQGZkS3SRT/view?usp=drive_link", featured: false },
+    { title: "Praktik Kerja Lapangan di PT Perkebunan Nusantara I Regional 7", issuer: "PT Perkebunan Nusantara I Regional 7", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Oct 2025", dateObj: new Date('2025-10-02'), thumbnail: "https://i.imgur.com/6D2kK8v.jpeg", link: "https://drive.google.com/file/d/15Y57Ws_UEeTmNnEo8kU8XPtQGZkS3SRT/view?usp=drive_link", featured: true },
     { title: "Praktik Kerja Lapangan di Futura Digital Printing", issuer: "SMK Negeri 5 Bandar Lampung & Futura Digital Printing", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Nov 2021", dateObj: new Date('2021-11-30'), thumbnail: "https://i.imgur.com/WDNdvED.jpeg", link: "https://drive.google.com/file/d/1GdpHWkieaXBotX1hBINZz71z8gFICp64/view?usp=drive_link", featured: false },
     { title: "IELTS Prediction Test (Score: 8.0)", issuer: "DAILY ENGLISH", catEn: "Language Certifications", catId: "Sertifikasi Bahasa", dateStr: "Oct 2026", dateObj: new Date('2026-10-06'), thumbnail: "https://i.imgur.com/jsi9Hqb.png", link: "https://drive.google.com/file/d/1WKp8qUhRHHmhXSTyHaQttxRHe9mUerhV/view?usp=drive_link", featured: true },
     { title: "TOEIC Prediction Test (Score: 970)", issuer: "Merry English", catEn: "Language Certifications", catId: "Sertifikasi Bahasa", dateStr: "Oct 2026", dateObj: new Date('2026-10-06'), thumbnail: "https://i.imgur.com/eKqhhC4.png", link: "https://drive.google.com/file/d/1po-eqokdBQeFrZRlzejv6svj0htVLd8a/view?usp=drive_link", featured: true },
@@ -653,18 +668,10 @@ export default function App() {
   };
 
   return (
-    <div className="font-sans antialiased min-h-screen">
+    <div className="font-sans antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
       
-      {/* 
-        ========================================================================
-        CSS GLOBAL INJECTIONS
-        Di sini saya tambahkan "html { scroll-behavior: smooth; }"
-        agar semua navigasi ke ID meluncur secara halus, bukan teleport.
-        ======================================================================== 
-      */}
       <style>{`
         html { scroll-behavior: smooth; }
-        
         @keyframes popIn {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
@@ -674,18 +681,17 @@ export default function App() {
 
       {/* NAVBAR */}
       <nav className="fixed w-full top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-gray-100 dark:border-slate-800 transition-colors">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-2.5 md:py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-2.5 md:py-4 flex justify-between items-center">
           
-          {/* LOGO NAVBAR BERDASARKAN TEMA */}
           <a href="#" onClick={(e) => scrollToSection(e, 'section-0')} className="flex items-center gap-2 shrink-0 active:scale-95 transition-transform">
             <img 
               src={isDark ? "/Gemini_Generated_Image_d3o0kqd3o0kqd3o0.png" : "/Gemini_Generated_Image_ehjs18ehjs18ehjs.png"} 
               alt="Andre Logo" 
-              className="h-8 md:h-10 w-auto object-contain" // Ukuran diperbesar agar pas dan jelas
+              className="h-8 md:h-10 w-auto object-contain"
             />
           </a>
           
-          <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
             {content.nav.map((item, idx) => (
               <a key={idx} href={`#section-${idx}`} onClick={(e) => scrollToSection(e, `section-${idx}`)} className="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
                 {item}
@@ -745,30 +751,32 @@ export default function App() {
             {content.heroBadge}
           </span>
           
-          <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
+          <h1 className="text-1xl sm:text-2xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
             {content.heroTitle}
           </h1>
           <p className="text-[11px] sm:text-sm md:text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mx-auto md:mx-0">
             {content.heroDesc}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2.5 md:gap-4 pt-1 md:pt-4">
-            <button onClick={(e) => scrollToSection(e, 'section-4')} className="w-full sm:w-auto bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 px-6 py-2.5 md:px-8 md:py-3 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg flex items-center justify-center gap-2">
-              {content.btnWork} &rarr;
-            </button>
-            <button onClick={(e) => scrollToSection(e, 'section-1')} className="w-full sm:w-auto bg-transparent text-slate-900 dark:text-white border border-slate-300 dark:border-slate-700 px-6 py-2.5 md:px-8 md:py-3 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-              {content.btnAbout}
-            </button>
+        
+            <div className="flex justify-center md:justify-start gap-4 mt-9 text-[11px] md:text-base text-slate-500 dark:text-slate-400">
+              <a href="https://linkedin.com/in/aloysius-andre-n-h-m" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 md:gap-2 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
+                <LinkedinIcon /> LinkedIn
+              </a>
+              <a href="https://github.com/Sealonk" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 md:gap-2 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <GithubIcon /> GitHub
+              </a>
+            </div>
+
+            {/* Buttons (Now below socials) */}
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-2.5 md:gap-4 mt-9">
+              <button onClick={(e) => scrollToSection(e, 'section-4')} className="w-full sm:w-auto bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 px-6 py-2.5 md:px-8 md:py-3 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg flex items-center justify-center gap-2">
+                {content.btnWork} &rarr;
+              </button>
+              <button onClick={(e) => scrollToSection(e, 'section-1')} className="w-full sm:w-auto bg-transparent text-slate-900 dark:text-white border border-slate-300 dark:border-slate-700 px-6 py-2.5 md:px-8 md:py-3 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                {content.btnAbout}
+              </button>
+            </div>
           </div>
-          
-          <div className="flex items-center justify-center md:justify-start gap-4 pt-4 text-[11px] md:text-base text-slate-500 dark:text-slate-400">
-            <a href="https://linkedin.com/in/aloysius-andre-n-h-m" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 md:gap-2 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
-              <LinkedinIcon /> LinkedIn
-            </a>
-            <a href="https://github.com/Sealonk" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 md:gap-2 hover:text-slate-900 dark:hover:text-white transition-colors">
-              <GithubIcon /> GitHub
-            </a>
-          </div>
-        </div>
 
         {/* CONTAINER KANAN (Foto + Badge Mobile) - Di mobile urutannya ke-2 (tengah) */}
         <div className="w-full md:flex-1 mx-auto relative mt-2 md:mt-0 order-2 md:order-2 flex flex-col items-center gap-3">
@@ -779,7 +787,7 @@ export default function App() {
           </span>
 
           {/* FOTO (Dikecilin di mobile jadi max-w-[180px] agar proporsional dan kotak) */}
-          <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-md aspect-[4/5] md:aspect-square bg-gray-100 dark:bg-slate-900 rounded-[2rem] md:rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl overflow-hidden relative flex items-end justify-center group">
+          <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-md aspect-[4/5] md:h-[575px] bg-gray-100 dark:bg-slate-900 rounded-[2rem] md:rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl overflow-hidden relative flex items-end justify-center group">
              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-slate-50 dark:from-cyan-900/20 dark:to-slate-900 transition-colors"></div>
              <img 
                src="/IMG_10011127.png" 
@@ -797,20 +805,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* STATS SECTION */}
-      <section className="border-y border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {content.stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col items-center md:items-start border-l-2 border-transparent md:border-gray-200 md:dark:border-slate-700 md:pl-6 first:border-none py-2 md:py-0">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 md:mb-1">{stat.val}</h3>
-              <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 text-center md:text-left">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* TECH STACK SECTION */}
-      <section id="section-1" className="py-16 md:py-20 px-4 md:px-6 max-w-6xl mx-auto scroll-mt-16 md:scroll-mt-20">
+      <section id="section-1" className="py-16 md:py-20 px-6 sm:px-10 md:px-12 max-w-7xl mx-auto scroll-mt-16 md:scroll-mt-20">
         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-10 tracking-tight text-center md:text-left">
           {content.sectionSkills}
         </h2>
@@ -829,11 +825,11 @@ export default function App() {
             { name: 'Microsoft Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail' },
             { name: 'Microsoft PowerPoint', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg/960px-Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail' }
           ].map((tech, idx) => (
-            <div key={idx} className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 md:gap-4 p-2 md:p-4 border border-gray-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-medium shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-slate-700 transition-all cursor-default group">
+            <div key={idx} className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 md:gap-4 p-2 md:p-4 border border-gray-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-medium shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-slate-700 transition-all cursor-default group overflow-hidden">
               <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 shrink-0 flex items-center justify-center">
                 <img src={tech.logo} alt={`${tech.name} logo`} className={`w-full h-full object-contain group-hover:scale-110 transition-transform ${tech.invertDark ? 'dark:invert opacity-80' : ''}`} />
               </div>
-              <span className="text-[9px] sm:text-[11px] md:text-base whitespace-nowrap text-center md:text-left">{tech.name}</span>
+              <span className="text-[9px] sm:text-[11px] md:text-base truncate w-full text-center md:text-left">{tech.name}</span>
             </div>
           ))}
         </div>
@@ -841,13 +837,12 @@ export default function App() {
 
       {/* EDUCATION SECTION (TIMELINE UI) */}
       <section id="section-2" className="w-full bg-slate-50 dark:bg-slate-900/30 border-y border-gray-100 dark:border-slate-800 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight">{content.sectionEdu}</h2>
           
           <div className="relative border-l-2 border-gray-200 dark:border-slate-800 ml-2 md:ml-8 space-y-4 md:space-y-10">
             {educationData.map((edu, idx) => (
               <div key={idx} className="relative pl-4 md:pl-12">
-                {/* Warna ring disesuaikan dengan background abu-abu */}
                 <div className="absolute -left-[9px] top-4 md:top-5 w-4 h-4 rounded-full bg-blue-600 dark:bg-cyan-500 ring-4 ring-slate-50 dark:ring-slate-900"></div>
                 
                 <div 
@@ -876,7 +871,6 @@ export default function App() {
                       </span>
                     </div>
                     
-                    {/* Teks Full Tanpa Titik-Titik (Line Clamp Dihapus) */}
                     <p className="text-[9px] md:text-sm text-slate-600 dark:text-slate-400 mt-1.5 md:mt-2 leading-relaxed">
                       {lang === 'en' ? edu.desc_en : edu.desc_id}
                     </p>
@@ -894,7 +888,7 @@ export default function App() {
 
       {/* EXPERIENCE SECTION */}
       <section id="section-3" className="w-full bg-white dark:bg-slate-950 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight">{content.sectionExp}</h2>
           
           <div className="space-y-3 md:space-y-6">
@@ -914,7 +908,6 @@ export default function App() {
 
                 <div className="flex-1 flex flex-col justify-center">
                   <div className="flex justify-between items-start w-full gap-2">
-                    {/* BAGIAN KIRI (Tipe, Role, Perusahaan) */}
                     <div className="flex-1">
                       <span className="inline-block px-1.5 py-0.5 md:px-2.5 md:py-1 mb-1 md:mb-2 text-[8px] md:text-[10px] font-bold uppercase tracking-wider rounded bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-max">
                         {lang === 'en' ? exp.type_en : exp.type_id}
@@ -927,15 +920,11 @@ export default function App() {
                       </p>
                     </div>
                     
-                    {/* BAGIAN KANAN: TANGGAL & BUTTON VIEW DETAIL (Desktop Fix) */}
                     <div className="flex items-center justify-end shrink-0 pt-0 md:pt-1">
                        <div className="flex items-center">
-                         {/* Tanggal (Akan otomatis tergeser ke kiri saat View Detail muncul) */}
                          <span className="text-[8px] md:text-sm font-mono px-1.5 py-0.5 md:px-2.5 md:py-1 bg-gray-50 dark:bg-slate-900 rounded md:rounded-md border border-gray-100 dark:border-slate-800 text-slate-500 dark:text-slate-400">
                            {lang === 'en' ? exp.date_en : exp.date_id}
                          </span>
-                         
-                         {/* View Detail (Hidden di mobile. Expand di desktop dari lebar 0 menjadi ada isinya saat di-hover) */}
                          <div className="hidden md:flex items-center justify-end overflow-hidden max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 transition-all duration-300">
                            <span className="flex items-center gap-1.5 text-sm font-bold text-blue-600 dark:text-cyan-400 whitespace-nowrap pl-3">
                              {lang === 'en' ? 'View Detail' : 'Lihat Detail'} <ExternalLink size={16} />
@@ -945,7 +934,6 @@ export default function App() {
                     </div>
                   </div>
                   
-                  {/* Teks Full Tanpa Titik-Titik */}
                   <p className="text-[9px] md:text-base text-slate-600 dark:text-slate-400 mt-1.5 md:mt-2 leading-relaxed md:pr-10">
                     {lang === 'en' ? exp.desc_en : exp.desc_id}
                   </p>
@@ -958,7 +946,7 @@ export default function App() {
 
       {/* PROJECTS SECTION */}
       <section id="section-4" className="w-full bg-slate-50 dark:bg-slate-900/30 border-y border-gray-100 dark:border-slate-800 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight">{content.sectionProj}</h2>
           
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
@@ -981,7 +969,6 @@ export default function App() {
                   <span className="text-[7px] md:text-xs font-bold text-blue-600 dark:text-cyan-500 uppercase tracking-wider mb-1 md:mb-2 line-clamp-1">
                     {lang === 'en' ? proj.category_en : proj.category_id}
                   </span>
-                  {/* Teks Judul & Deskripsi Full Tanpa Titik-Titik */}
                   <h3 className="text-[10px] sm:text-[11px] md:text-xl font-bold text-slate-900 dark:text-white mb-1 md:mb-3 leading-tight">
                     {lang === 'en' ? proj.title_en : proj.title_id}
                   </h3>
@@ -1008,21 +995,68 @@ export default function App() {
         </div>
       </section>
 
-      {/* CERTIFICATES SECTION */}
+      {/* AWARDS SECTION (NEW) */}
+      {/* AWARDS SECTION */}
       <section id="section-5" className="w-full bg-white dark:bg-slate-950 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight flex items-center gap-2.5 md:gap-3">
+            {content.sectionAwards}
+          </h2>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+            {awardsData.map((award, idx) => (
+              <div 
+                key={idx} 
+                className="group flex flex-col cursor-pointer border border-gray-200 dark:border-slate-800 rounded-xl md:rounded-2xl p-2 md:p-4 active:scale-[0.98] md:active:scale-100 hover:shadow-xl transition-all bg-slate-50 dark:bg-slate-900 h-full"
+                onClick={() => setSelectedAward(award)}
+              >
+                <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-md md:rounded-xl mb-2 md:mb-4 overflow-hidden relative p-1 md:p-3 flex items-center justify-center">
+                   <img src={award.thumbnail} alt={award.title_en} loading="lazy" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"/>
+                   <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+                      <span className="bg-blue-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-full text-[9px] md:text-sm font-bold flex items-center gap-1 md:gap-2 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">
+                        {content.btnView} <ExternalLink size={12} className="md:w-3.5 md:h-3.5" />
+                      </span>
+                   </div>
+                </div>
+
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-[10px] sm:text-[11px] md:text-lg font-bold text-slate-900 dark:text-white mb-1 md:mb-2 leading-tight">
+                    {lang === 'en' ? award.title_en : award.title_id}
+                  </h3>
+                  <p className="text-[8px] sm:text-[9px] md:text-sm text-slate-500 dark:text-slate-400 font-medium mb-1.5 md:mb-3">
+                    {award.issuer}
+                  </p>
+                  <p className="text-[8px] sm:text-[9px] md:text-xs text-slate-600 dark:text-slate-400 line-clamp-2 md:line-clamp-3 mb-2 md:mb-4">
+                    {lang === 'en' ? award.desc_en : award.desc_id}
+                  </p>
+                  
+                  <div className="mt-auto pt-2 md:pt-3 border-t border-gray-200 dark:border-slate-800">
+                    <span className="text-[8px] md:text-[10px] font-mono font-semibold text-slate-500 dark:text-slate-400">
+                      {lang === 'en' ? award.date_en : award.date_id}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CERTIFICATES SECTION */}
+      <section id="section-6" className="w-full bg-slate-50 dark:bg-slate-900/30 border-y border-gray-100 dark:border-slate-800 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-12 gap-3 md:gap-4 text-center md:text-left">
             <div>
               <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-2 md:mb-4 tracking-tight">
-                {lang === 'en' ? 'Certificates & Awards' : 'Sertifikat & Penghargaan'}
+                {content.sectionCert}
               </h2>
               <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto md:mx-0">
-                {lang === 'en' ? 'Highlight of my professional & academic credentials.' : 'Sorotan kualifikasi profesional & akademik saya.'}
+                {content.sectionCertDesc}
               </p>
             </div>
             
             <button onClick={() => setShowAllCerts(true)} className="mt-2 md:mt-0 inline-flex items-center justify-center md:justify-end gap-1.5 md:gap-2 text-blue-600 dark:text-cyan-400 font-bold text-[11px] md:text-sm hover:underline hover:scale-105 transition-transform">
-              {lang === 'en' ? 'View All Certificates' : 'Lihat Semua Sertifikat'} <ExternalLink size={14} className="md:w-4 md:h-4"/>
+              {content.btnAllCerts} <ExternalLink size={14} className="md:w-4 md:h-4"/>
             </button>
           </div>
           
@@ -1045,7 +1079,6 @@ export default function App() {
                   <span className="text-[7px] md:text-[10px] font-bold text-blue-600 dark:text-cyan-500 uppercase tracking-wider mb-1 block">
                     {lang === 'en' ? cert.catEn : cert.catId}
                   </span>
-                  {/* Judul & Issuer Full Tanpa Titik-Titik */}
                   <h3 className="text-[9px] sm:text-[10px] md:text-sm font-bold text-slate-900 dark:text-white leading-tight mb-1">{cert.title}</h3>
                   <p className="text-[7px] md:text-xs text-slate-500 dark:text-slate-400 mb-1.5 md:mb-4">{cert.issuer}</p>
                   
@@ -1062,6 +1095,71 @@ export default function App() {
       {/* ========================================================== */}
       {/* MODAL AREA DENGAN ANIMASI POP-IN                           */}
       {/* ========================================================== */}
+
+      {/* MODAL POP-UP AWARDS */}
+      {selectedAward && (
+        <div className="fixed inset-0 z-[70] bg-slate-900/80 backdrop-blur-sm flex justify-center items-center p-3 md:p-6">
+          <div className="animate-pop-in relative bg-white dark:bg-slate-950 w-full max-w-3xl max-h-[95vh] rounded-2xl md:rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-slate-800">
+            <div className="px-4 md:px-6 py-3 md:py-4 flex justify-between items-center bg-gray-50 dark:bg-slate-900/50 shrink-0 border-b border-gray-200 dark:border-slate-800">
+              
+              {/* BADGE AWARDS DIPERBAIKI (TIDAK MENUMPUK) */}
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-wider rounded-full bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-500 whitespace-nowrap">
+                {lang === 'en' ? 'Award Details' : 'Detail Penghargaan'}
+              </span>
+
+              <button onClick={() => setSelectedAward(null)} className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center bg-gray-200 hover:bg-red-500 hover:text-white dark:bg-slate-800 text-slate-600 dark:text-white rounded-full transition-colors shrink-0">
+                <X size={14} className="md:w-4 md:h-4"/>
+              </button>
+            </div>
+            
+            <div className="overflow-y-auto p-4 md:p-8 custom-scrollbar">
+              <div className="flex flex-col items-center text-center mb-6 md:mb-8 pb-6 md:pb-8 border-b border-gray-100 dark:border-slate-800">
+                <h3 className="text-xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight mb-2 md:mb-3">{lang === 'en' ? selectedAward.title_en : selectedAward.title_id}</h3>
+                <p className="text-sm md:text-lg text-blue-600 dark:text-cyan-400 font-semibold mb-3 md:mb-4">{selectedAward.issuer}</p>
+                <div className="flex flex-wrap gap-2 md:gap-3 items-center justify-center">
+                  <span className="px-3 py-1 md:px-4 md:py-1.5 text-[10px] md:text-xs font-mono bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg border border-gray-200 dark:border-slate-700">
+                    {lang === 'en' ? selectedAward.date_en : selectedAward.date_id}
+                  </span>
+                </div>
+              </div>
+              <div className="space-y-5 md:space-y-6">
+                <div>
+                  <h4 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-2 md:mb-3">{lang === 'en' ? 'Description' : 'Deskripsi'}</h4>
+                  <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 leading-relaxed text-justify">{lang === 'en' ? selectedAward.desc_en : selectedAward.desc_id}</p>
+                </div>
+                {selectedAward.gallery && selectedAward.gallery.length > 0 && (
+                  <div className="pt-5 md:pt-8 border-t border-gray-100 dark:border-slate-800">
+                    <h4 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-4 md:mb-5 flex items-center gap-2">
+                      <FileCheck size={18} className="md:w-5 md:h-5 text-blue-600 dark:text-cyan-500" />
+                      {lang === 'en' ? 'Gallery & Credentials' : 'Galeri & Kredensial'}
+                    </h4>
+                    
+                    {/* GALLERY 3 KOLOM JUGA UNTUK MOBILE */}
+                    <div className="grid grid-cols-3 gap-2 md:gap-5">
+                      {selectedAward.gallery.map((img, i) => (
+                        <div key={i} className="group flex flex-col h-full">
+                          <div className="aspect-[4/3] bg-gray-100 dark:bg-slate-900 p-2 md:p-3 rounded-lg md:rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md cursor-zoom-in transition-all relative overflow-hidden flex items-center justify-center mt-auto" onClick={() => setZoomedImage(img.url)}>
+                            <img src={img.url} alt={lang === 'en' ? img.caption_en : img.caption_id} loading="lazy" className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300 drop-shadow-sm rounded" />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-slate-900/10 dark:group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                              <div className="bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-1 md:p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 shadow-lg">
+                                <ZoomIn size={12} className="md:w-[18px] md:h-[18px]"/>
+                              </div>
+                            </div>
+                          </div>
+                          <span className="text-[7px] sm:text-[9px] md:text-xs text-center font-bold text-slate-500 dark:text-slate-400 mt-1 md:mt-2">
+                            {lang === 'en' ? img.caption_en : img.caption_id}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* MODAL POP-UP SEMUA SERTIFIKAT */}
       {showAllCerts && (
@@ -1105,7 +1203,6 @@ export default function App() {
                     <div className="md:p-4 pt-1 flex flex-col flex-1 justify-between">
                       <div>
                         <span className="text-[7px] md:text-[10px] font-bold text-blue-600 dark:text-cyan-400 uppercase tracking-wider mb-1 block line-clamp-1">{lang === 'en' ? cert.catEn : cert.catId}</span>
-                        {/* Judul & Issuer Full Tanpa Titik-Titik */}
                         <h5 className="font-bold text-slate-900 dark:text-white text-[9px] sm:text-[10px] md:text-sm mb-1 leading-snug">{cert.title}</h5>
                         <p className="text-[7px] md:text-xs text-slate-500 dark:text-slate-400">{cert.issuer}</p>
                       </div>
@@ -1181,7 +1278,7 @@ export default function App() {
         </div>
       )}
 
-      {/* MODAL POP-UP DETAIL PENDIDIKAN */}
+      {/* MODAL POP-UP DETAIL PENDIDIKAN (Tanpa Gallery) */}
       {selectedEdu && (
         <div className="fixed inset-0 z-[70] bg-slate-900/80 backdrop-blur-sm flex justify-center items-center p-3 md:p-6">
           <div className="animate-pop-in relative bg-white dark:bg-slate-950 w-full max-w-3xl max-h-[95vh] rounded-2xl md:rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-slate-800">
@@ -1225,33 +1322,6 @@ export default function App() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                )}
-                {selectedEdu.gallery && selectedEdu.gallery.length > 0 && (
-                  <div className="pt-5 md:pt-8 border-t border-gray-100 dark:border-slate-800">
-                    <h4 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-4 md:mb-5 flex items-center gap-2">
-                      <FileCheck size={18} className="md:w-5 md:h-5 text-blue-600 dark:text-cyan-500" />
-                      {lang === 'en' ? 'Credentials' : 'Kredensial Akademik'}
-                    </h4>
-                    <div className="grid grid-cols-3 gap-2 md:gap-5">
-                      {selectedEdu.gallery.map((img, i) => (
-                        <div key={i} className="group flex flex-col h-full">
-                          <div className="min-h-[28px] md:min-h-[40px] flex items-start mb-1 md:mb-2">
-                            <span className="text-[7px] md:text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 leading-snug w-full">
-                              {lang === 'en' ? img.caption_en : img.caption_id}
-                            </span>
-                          </div>
-                          <div className="aspect-[4/3] bg-gray-100 dark:bg-slate-900 p-1 md:p-2 rounded-lg md:rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md cursor-zoom-in transition-all relative overflow-hidden flex items-center justify-center mt-auto" onClick={() => setZoomedImage(img.url)}>
-                            <img src={img.url} alt={lang === 'en' ? img.caption_en : img.caption_id} loading="lazy" className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300 drop-shadow-sm rounded" />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-slate-900/10 dark:group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                              <div className="bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-1 md:p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 shadow-lg">
-                                <ZoomIn size={12} className="md:w-[18px] md:h-[18px]"/>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 )}
               </div>
@@ -1360,7 +1430,7 @@ export default function App() {
       )}
       
       {/* CONTACT SECTION */}
-      <section id="section-6" className="w-full bg-slate-50 dark:bg-slate-900/30 border-t border-gray-100 dark:border-slate-800 py-12 md:py-24 scroll-mt-10 md:scroll-mt-16">
+      <section id="section-7" className="w-full bg-white dark:bg-slate-950 border-t border-gray-100 dark:border-slate-800 py-12 md:py-24 scroll-mt-10 md:scroll-mt-16">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-2xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2 md:mb-6 tracking-tight">{content.sectionContact}</h2>
           <p className="text-xs md:text-lg text-slate-600 dark:text-slate-400 mb-6 md:mb-10 max-w-2xl mx-auto px-2 md:px-0">
@@ -1368,7 +1438,7 @@ export default function App() {
           </p>
           <div className="flex flex-row justify-center gap-3 md:gap-6">
             <a href="mailto:aloysiusandrenhm@gmail.com" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-8 md:py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
-              <Mail size={14} className="md:w-5 md:h-5" /> Email Me
+              <Mail size={14} className="md:w-5 md:h-5" /> {content.emailMe}
             </a>
             <a href="https://wa.me/6289618927443" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-8 md:py-4 bg-[#25D366] text-white rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
               <Smartphone size={14} className="md:w-5 md:h-5" /> WhatsApp
@@ -1377,9 +1447,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER (Background Putih) */}
-      <footer className="w-full bg-white dark:bg-slate-950 py-5 md:py-8 border-t border-gray-100 dark:border-slate-800 text-center text-[10px] md:text-sm text-slate-500 dark:text-slate-400 px-4">
-        <p>&copy; {new Date().getFullYear()} Aloysius Andre Nathanael Hasudungan Manullang. All rights reserved.</p>
+      {/* FOOTER */}
+      <footer className="w-full bg-slate-50 dark:bg-slate-900/30 py-5 md:py-8 border-t border-gray-100 dark:border-slate-800 text-center text-[10px] md:text-sm text-slate-500 dark:text-slate-400 px-4">
+        <p>&copy; {new Date().getFullYear()} Aloysius Andre Nathanael Hasudungan Manullang. {content.footerRight}</p>
       </footer>
 
     </div>
