@@ -758,7 +758,7 @@ export default function App() {
       <section id="section-0" className="pt-24 pb-8 md:pt-40 md:pb-20 px-4 md:px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-5 md:gap-12">
         
         {/* CONTAINER KIRI (Teks) - Di mobile urutannya ke-3 (paling bawah) */}
-        <div className="flex-1 space-y-3 md:space-y-6 text-center md:text-left order-3 md:order-1 mt-2 md:mt-0 w-full">
+        <div className="flex-1 space-y-3 md:space-y-6 text-center md:text-left order-3 md:order-1 mt-2 md:mt-0 w-full md:portrait:px-6">
           {/* BADGE DESKTOP (disembunyikan di mobile) */}
           <span className="hidden md:inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-cyan-900/30 text-blue-600 dark:text-cyan-400 text-sm font-medium border border-blue-100 dark:border-cyan-800">
             {content.heroBadge}
