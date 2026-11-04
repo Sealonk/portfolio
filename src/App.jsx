@@ -103,6 +103,9 @@ export default function App() {
   useEffect(() => {
     if (isDark) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
+    
+    // Update Judul Tab Browser secara dinamis
+    document.title = "Andre Manullang | Cloud & Backend Engineer";
   }, [isDark]);
 
   // Handle Smooth Scrolling
@@ -121,7 +124,7 @@ export default function App() {
       sectionEdu: "Education Background",
       heroBadge: "Hello, I'm Aloysius Andre Nathanael Hasudungan Manullang 👨‍💻",
       heroTitle: "I Architect And Build Cloud Systems That Scale.",
-      heroDesc: "I'm a Cloud & Backend Engineer primarily passionate about Cloud Computing infrastructure—architecting Virtual Machines (Compute Engine, EC2), configuring auto-scaling, load balancing, and network firewalls (HTTP/S, SSH). Secondarily, I specialize in building robust backend APIs using Node.js, Express, and MySQL.",
+      heroDesc: "I am a Cloud and Backend Engineer primarily passionate about Cloud Computing infrastructure. My expertise includes architecting Virtual Machines such as Compute Engine and EC2, configuring auto-scaling, load balancing, and network firewalls. Secondarily, I specialize in building robust backend APIs using Node.js, Express, and MySQL. Additionally, I am highly proficient in English, possessing a native-like accent and excellent verbal communication skills.",
       btnWork: "View My Work",
       btnAbout: "About Me",
       stats: [
@@ -146,7 +149,7 @@ export default function App() {
       sectionEdu: "Riwayat Pendidikan",
       heroBadge: "Halo, Saya Aloysius Andre Nathanael Hasudungan Manullang 👨‍💻",
       heroTitle: "Saya Merancang Dan Membangun Sistem Cloud Skalabel.",
-      heroDesc: "Saya seorang Cloud & Backend Engineer dengan passion utama pada infrastruktur Cloud Computing—merancang Virtual Machine (Compute Engine, EC2), mengonfigurasi auto-scaling, load balancing, serta aturan firewall jaringan (HTTP/S, SSH). Selain itu, saya berfokus membangun backend API tangguh menggunakan Node.js, Express, dan MySQL.",
+      heroDesc: "Saya seorang Cloud dan Backend Engineer dengan passion utama pada infrastruktur Cloud Computing—merancang Virtual Machine seperti Compute Engine dan EC2, mengonfigurasi auto-scaling, load balancing, dan network firewall. Selain itu, saya berfokus membangun backend API yang tangguh menggunakan Node.js, Express, dan MySQL. Saya juga sangat fasih berbahasa Inggris, memiliki aksen native-like, dan keterampilan komunikasi verbal yang sangat baik.",
       btnWork: "Lihat Karya Saya",
       btnAbout: "Tentang Saya",
       stats: [
@@ -672,8 +675,14 @@ export default function App() {
       {/* NAVBAR */}
       <nav className="fixed w-full top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-gray-100 dark:border-slate-800 transition-colors">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-2.5 md:py-4 flex justify-between items-center">
-          <a href="#" onClick={(e) => scrollToSection(e, 'section-0')} className="text-xl md:text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">
-            ANDRE<span className="text-blue-600 dark:text-cyan-400">.</span>
+          
+          {/* LOGO NAVBAR BERDASARKAN TEMA */}
+          <a href="#" onClick={(e) => scrollToSection(e, 'section-0')} className="flex items-center gap-2 shrink-0 active:scale-95 transition-transform">
+            <img 
+              src={isDark ? "/Gemini_Generated_Image_d3o0kqd3o0kqd3o0.png" : "/Gemini_Generated_Image_ehjs18ehjs18ehjs.png"} 
+              alt="Andre Logo" 
+              className="h-8 md:h-10 w-auto object-contain" // Ukuran diperbesar agar pas dan jelas
+            />
           </a>
           
           <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">

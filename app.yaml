@@ -1,0 +1,12 @@
+runtime: nodejs22 # atau versi Node.js yang anda gunakan dalam projek ini
+service: portfolio # Nama perkhidmatan baharu supaya tidak mengganggu Si-Gizi
+
+# Jika anda menggunakan React/Vite dan mem-build ke folder 'dist' atau 'build':
+handlers:
+- url: /(.*\..+)$
+  static_files: dist/\1
+  upload: dist/(.*\..+)$
+
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html
