@@ -247,7 +247,7 @@ export default function App() {
         { url: "https://i.imgur.com/s1sRurI.jpeg", caption_en: "2023 Himatro Executive Board Orientation", caption_id: "Orientasi pengurus Himatro 2023" },
         { url: "https://i.imgur.com/vx8aniZ.jpeg", caption_en: "Himatro 2024 Workshop", caption_id: "Lokakarya Himatro 2024" },
         { url: "https://i.imgur.com/zxzgcgp.jpeg", caption_en: "Photos from the Himatro 2024 DIODA (Basic Training and Orientation) event", caption_id: "Foto saat kegiatan DIODA (Diklat dan Orientasi Dasar) Himatro 2024" },
-        { url: "https://i.imgur.com/W7mBLBO.jpeg", caption_en: "Company Visit to PT. Perkebunan Nusantara I Regional 7", caption_id: "Visitasi perusahaan ke PT. Perkebunan Nusantara I Regional 7" }
+        { url: "https://i.imgur.com/W7mBLBO.jpeg", caption_en: "Company Visit to PTPN I Regional 7", caption_id: "Visitasi perusahaan ke PTPN I Regional 7" }
       ]
     },
     {
@@ -533,10 +533,19 @@ export default function App() {
       title_en: "Silver Award - iTaLiiC (ECHOPEN)", title_id: "Silver Award - iTaLiiC (ECHOPEN)",
       issuer: "Universiti Teknologi MARA",
       date_en: "Jun 2025", date_id: "Jun 2025",
-      desc_en: "Won the Silver Award at the International Academic Competition (iTaLiiC) hosted by Universiti Teknologi MARA. This achievement recognized the successful presentation of an innovative technological project on an international stage, demonstrating applied engineering skills.",
-      desc_id: "Meraih Silver Award pada Kompetisi Akademik Internasional (iTaLiiC) yang diselenggarakan oleh Universiti Teknologi MARA. Pencapaian ini mengakui keberhasilan presentasi proyek teknologi yang inovatif di kancah internasional, menunjukkan keterampilan terapan di bidang teknik.",
+      desc_en: "Won the Silver Award at the International Teaching and Learning Invention Innovation Competition (iTaLiiC 2025) hosted by Universiti Teknologi MARA. Our team developed 'EchoPen', a conceptual smart pen that converts handwriting into real-time audio and tactile (vibration) feedback for the visually impaired. Built using a micro-camera, ESP32 microcontroller, and OCR, this portable assistive tool promotes inclusive education without requiring an internet connection.",
+      desc_id: "Meraih Silver Award pada International Teaching and Learning Invention Innovation Competition (iTaLiiC 2025) yang diselenggarakan oleh Universiti Teknologi MARA. Tim kami merancang 'EchoPen', sebuah purwarupa smart pen konseptual yang mengubah tulisan tangan menjadi umpan balik audio (suara) dan taktil (getaran) secara real-time untuk penyandang tunanetra. Dibangun menggunakan kamera mikro, mikrokontroler ESP32, dan OCR, alat bantu portabel ini mendukung pendidikan inklusif tanpa memerlukan koneksi internet.",
       thumbnail: "https://i.imgur.com/LJR8VEU.png",
-      gallery: [ { url: "https://i.imgur.com/LJR8VEU.png", caption_en: "Silver Award Certificate", caption_id: "Sertifikat Silver Award - iTaLiiC" } ]
+      documents: [
+        { title_en: "Read Extended Abstract", title_id: "Baca Extended Abstract", url: "https://drive.google.com/file/d/1hTbi37GN8KH3ARN923yzgYqAtIhRhRQO/view?usp=sharing" },
+        { title_en: "View Presentation Slides", title_id: "Lihat Slide Presentasi", url: "https://drive.google.com/file/d/1_wL9BTXcwuTnD4uxEf6CbIKqkwUuJwpj/view?usp=sharing" }
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/LJR8VEU.png", caption_en: "Silver Award Certificate", caption_id: "Sertifikat Silver Award - iTaLiiC" },
+        { url: "https://i.imgur.com/2R6RMpx.jpeg", caption_en: "Unila Official Instagram Recognition", caption_id: "Pengakuan Resmi Instagram Unila" },
+        { url: "https://i.imgur.com/eJdlCLk.jpeg", caption_en: "EchoPen Team with iTaLiiC Certificates", caption_id: "Tim EchoPen bersama Sertifikat iTaLiiC" },
+        { url: "https://i.imgur.com/mSoRU5I.png", caption_en: "EchoPen Project Poster", caption_id: "Poster Proyek EchoPen" }
+      ]
     },
     {
       title_en: "Best III Gong Award - FFPJ XI", title_id: "Terbaik III Gong Award - FFPJ XI",
@@ -597,7 +606,7 @@ export default function App() {
     { title: "Studi Independen Bersertifikat Angkatan 7 di Yayasan Dicoding Indonesia", issuer: "Kampus Merdeka", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Dec 2024", dateObj: new Date('2024-12-31'), thumbnail: "https://i.imgur.com/8dZJWkl.png", link: "https://drive.google.com/file/d/1AvYJ3HOY-ASXnBsLosaKo1nnjj6wArBm/view?usp=drive_link", featured: false },
     { title: "AWS Foundations: Getting Started with the AWS Cloud Essentials", issuer: "AWS Training & Certification", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Sep 2026", dateObj: new Date('2026-09-30'), thumbnail: "https://i.imgur.com/LRgtQLv.png", link: "https://drive.google.com/file/d/1mzV5dR3Q6ayP0AaizomzWXB2kOz5daWz/view?usp=drive_link", featured: false },
     { title: "Google Cloud Computing Foundations Certificate", issuer: "Google Cloud", catEn: "Bootcamps & Licenses", catId: "Bootcamp & Lisensi", dateStr: "Oct 2024", dateObj: new Date('2024-10-02'), thumbnail: "https://images.credly.com/size/340x340/images/4dda8ae4-99ee-476c-bca3-6f0adbab42fe/image.png", link: "https://www.credly.com/badges/d75e6426-7137-4b41-9841-38da1cc3afd9/public_url", featured: true },
-    { title: "Praktik Kerja Lapangan di PT Perkebunan Nusantara I Regional 7", issuer: "PT Perkebunan Nusantara I Regional 7", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Oct 2025", dateObj: new Date('2025-10-02'), thumbnail: "https://i.imgur.com/6D2kK8v.jpeg", link: "https://drive.google.com/file/d/15Y57Ws_UEeTmNnEo8kU8XPtQGZkS3SRT/view?usp=drive_link", featured: true },
+    { title: "Praktik Kerja Lapangan di PTPN I Regional 7", issuer: "PTPN I Regional 7", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Oct 2025", dateObj: new Date('2025-10-02'), thumbnail: "https://i.imgur.com/6D2kK8v.jpeg", link: "https://drive.google.com/file/d/15Y57Ws_UEeTmNnEo8kU8XPtQGZkS3SRT/view?usp=drive_link", featured: true },
     { title: "Praktik Kerja Lapangan di Futura Digital Printing", issuer: "SMK Negeri 5 Bandar Lampung & Futura Digital Printing", catEn: "Internships & Industry Experiences", catId: "Magang & Pengalaman Industri", dateStr: "Nov 2021", dateObj: new Date('2021-11-30'), thumbnail: "https://i.imgur.com/WDNdvED.jpeg", link: "https://drive.google.com/file/d/1GdpHWkieaXBotX1hBINZz71z8gFICp64/view?usp=drive_link", featured: false },
     { title: "IELTS Prediction Test (Score: 8.0)", issuer: "DAILY ENGLISH", catEn: "Language Certifications", catId: "Sertifikasi Bahasa", dateStr: "Oct 2026", dateObj: new Date('2026-10-06'), thumbnail: "https://i.imgur.com/jsi9Hqb.png", link: "https://drive.google.com/file/d/1WKp8qUhRHHmhXSTyHaQttxRHe9mUerhV/view?usp=drive_link", featured: true },
     { title: "TOEIC Prediction Test (Score: 970)", issuer: "Merry English", catEn: "Language Certifications", catId: "Sertifikasi Bahasa", dateStr: "Oct 2026", dateObj: new Date('2026-10-06'), thumbnail: "https://i.imgur.com/eKqhhC4.png", link: "https://drive.google.com/file/d/1po-eqokdBQeFrZRlzejv6svj0htVLd8a/view?usp=drive_link", featured: true },
@@ -651,7 +660,11 @@ export default function App() {
     { title: "Piagam Penghargaan: Predikat Kelulusan Pujian (Cum Laude)", issuer: "Universitas Lampung", catEn: "Awards & Licenses",catId: "Penghargaan & Prestasi", dateStr: "Sep 2026", dateObj: new Date('2026-09-19'), thumbnail: "https://i.imgur.com/Ckjcv6r.jpeg", link: "https://drive.google.com/file/d/1xMFkQF_61l1eF-2bNM6ztspA6Xlpjj5K/view?usp=drive_link", featured: false },
     { title: "National English and Applied Science Olympic (NEASO)", issuer: "Universitas Gadjah Mada (UGM)", catEn: "Awards & Licenses", catId: "Penghargaan & Prestasi", dateStr: "Feb 2014", dateObj: new Date('2014-02-10'), thumbnail: "https://i.imgur.com/V2q2kII.jpeg", link: "https://drive.google.com/file/d/1uaKdgE0kI_04gTaOka0W-sXFunWVEBJp/view?usp=drive_link", featured: false },
     { title: "Penghargaan Kelulusan: Sarjana Teknik Informatika", issuer: "Himatro Unila", catEn: "Trainings & Organizations (Soft Skills)", catId: "Pelatihan & Organisasi (Soft Skill)", dateStr: "Sep 2026", dateObj: new Date('2026-09-19'), thumbnail: "https://i.imgur.com/AprlX6w.jpeg", link: "https://drive.google.com/file/d/1mzMrLRuTOSk-elRO4Rb5P9Y3EXGYT70S/view?usp=drive_link", featured: false },
-    { title: "Pendidikan Keterampilan Komputer (Computer Skills)", issuer: "BSW Gramedia & SD Xaverius 3", catEn: "Trainings & Organizations (Soft Skills)", catId: "Pelatihan & Organisasi (Soft Skill)", dateStr: "Jun 2016", dateObj: new Date('2016-06-18'), thumbnail: "https://i.imgur.com/wXWU1iJ.jpeg", link: "https://drive.google.com/file/d/1NXbejJ0CyrJDJ4XzoUJ7GTFNnw1Vu6xJ/view?usp=drive_link", featured: false }
+    { title: "Pendidikan Keterampilan Komputer (Computer Skills)", issuer: "BSW Gramedia & SD Xaverius 3", catEn: "Trainings & Organizations (Soft Skills)", catId: "Pelatihan & Organisasi (Soft Skill)", dateStr: "Jun 2016", dateObj: new Date('2016-06-18'), thumbnail: "https://i.imgur.com/wXWU1iJ.jpeg", link: "https://drive.google.com/file/d/1NXbejJ0CyrJDJ4XzoUJ7GTFNnw1Vu6xJ/view?usp=drive_link", featured: false },
+    { title: "Silver Award - iTaLiiC (ECHOPEN)", issuer: "Universiti Teknologi MARA", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Jun 2025", dateObj: new Date('2025-06-27'), thumbnail: "https://i.imgur.com/LJR8VEU.png", link: "https://drive.google.com/file/d/1GADhyoozIVdGt6ROp-_f13RToB-XlpJs/view?usp=drive_link", featured: false },
+    { title: "Juara II - Lomba Film Fiksi", issuer: "MKKS SMK Kota Bandar Lampung", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Feb 2020", dateObj: new Date('2020-02-21'), thumbnail: "https://i.imgur.com/RBaqqlR.png", link: "https://drive.google.com/file/d/1smg_RYdidBYbBTlz48x5el9IWdu_lvy_/view?usp=drive_link", featured: false },
+    { title: "Juara 2 - Gebyar Minat & Bakat", issuer: "SMK Negeri 4 Bandar Lampung", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "2020", dateObj: new Date('2020-01-01'), thumbnail: "https://i.imgur.com/Ww6okqx.png", link: "https://drive.google.com/file/d/1RPMIbIm5EGfoMe0KNfCBvvpqbYm20Cat/view?usp=drive_link", featured: false },
+    { title: "Terbaik III Gong Award - Festival Film Pelajar Jogja XI", issuer: "FFPJ Foundation", catEn: "Awards & Licenses", catId: "Penghargaan & Kompetisi", dateStr: "Dec 2020", dateObj: new Date('2020-12-17'), thumbnail: "https://i.imgur.com/KKNsaFB.png", link: "https://drive.google.com/file/d/1hXzglQaeCvj3Haabo6lbJ0_255QLJKsM/view?usp=drive_link", featured: false }
   ];
 
   const formatDate = (dateObj, currentLang) => {
@@ -802,6 +815,18 @@ export default function App() {
                [ Letakkan "IMG_10011127.png" di folder "public" ]
              </div>
           </div>
+        </div>
+      </section>
+
+      {/* STATS SECTION */}
+      <section className="border-y border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/50">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-6 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          {content.stats.map((stat, idx) => (
+            <div key={idx} className="flex flex-col items-center justify-center border-l-2 border-transparent md:border-gray-200 md:dark:border-slate-700 md:pl-6 first:border-none py-2 md:py-0 text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 md:mb-1">{stat.val}</h3>
+              <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 text-center">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1127,6 +1152,16 @@ export default function App() {
                   <h4 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-2 md:mb-3">{lang === 'en' ? 'Description' : 'Deskripsi'}</h4>
                   <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 leading-relaxed text-justify">{lang === 'en' ? selectedAward.desc_en : selectedAward.desc_id}</p>
                 </div>
+                {selectedAward.documents && selectedAward.documents.length > 0 && (
+                  <div className="pt-3 md:pt-4 flex flex-wrap gap-2 md:gap-3">
+                    {selectedAward.documents.map((doc, i) => (
+                      <a key={i} href={doc.url} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-cyan-400 hover:bg-blue-100 dark:hover:bg-slate-700 rounded-lg text-[10px] md:text-xs font-bold transition-colors border border-blue-100 dark:border-slate-700">
+                        <FileText size={14} className="md:w-4 md:h-4" />
+                        {lang === 'en' ? doc.title_en : doc.title_id}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {selectedAward.gallery && selectedAward.gallery.length > 0 && (
                   <div className="pt-5 md:pt-8 border-t border-gray-100 dark:border-slate-800">
                     <h4 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-4 md:mb-5 flex items-center gap-2">
