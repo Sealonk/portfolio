@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Globe, Mail, Smartphone, ExternalLink, ArrowUpDown, Printer, FileCheck, ZoomIn, FileText, Menu, X } from 'lucide-react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { Moon, Sun, Globe, Mail, Smartphone, ExternalLink, ArrowUpDown, Printer, FileCheck, ZoomIn, FileText, Menu, X } from 'lucide-react';  
 // Komponen SVG untuk logo brand
 const GithubIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
@@ -100,6 +99,164 @@ export default function App() {
   const [modalActiveCategory, setModalActiveCategory] = useState('All');
   const [modalSortOrder, setModalSortOrder] = useState('newest');
 
+  // DATA TECH STACK
+  const techStacks = [
+    { name: 'Google Cloud', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
+    { name: 'AWS', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', invertDark: true },
+    { name: 'Azure', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+    { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+    { name: 'Express.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg', invertDark: true },
+    { name: 'MySQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
+    { name: 'PostgreSQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+    { name: 'Oracle', logo: 'https://companieslogo.com/img/orig/ORCL-d5a587ae.png?t=1740130451' },
+    { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+    { name: 'FastAPI', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
+    { name: 'PHP', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg' },
+    { name: 'Laravel', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg' },
+    { name: 'C++', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg' },
+    { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+    { name: 'React.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+    { name: 'HTML', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
+    { name: 'CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
+    { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
+    { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg', invertDark: true },
+    { name: 'Docker', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+    { name: 'Postman', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg' },
+    { name: 'VS Code', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg' },
+    { name: 'Figma', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
+    { name: 'Arduino IDE', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Arduino_IDE_logo.svg/1280px-Arduino_IDE_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail' },
+    { name: 'Arduino', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg' },
+    { name: 'ESP', logo: 'https://i.imgur.com/QeQJiar.png' },
+    { name: 'Node-RED', logo: 'https://nodered.org/about/resources/media/node-red-icon.png' },
+    { name: 'MQTT', logo: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mqtt.png' },
+    { name: 'Blynk', logo: 'https://cdn.prod.website-files.com/6272e11601c9e296becde07b/68ab9db5a7288b7cca77e049_Sign.png' },
+    { name: 'Proteus', logo: 'https://upload.wikimedia.org/wikipedia/en/5/5a/Proteus_Design_Suite_Atom_Logo.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original' },
+    { name: 'MS Word', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Word_%282019%E2%80%932025%29.svg.png' },
+    { name: 'MS Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png' },
+    { name: 'MS PowerPoint', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg/960px-Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg.png' }
+  ];
+
+  // LOGIKA SLIDER OTOMATIS & DRAG TECH STACK (INFINITE SCROLL)
+  const techScrollRef = useRef(null);
+  
+  // Menggunakan satu Ref untuk semua kalkulasi agar tidak membebani React re-render, menghasilkan 60fps yang sangat smooth
+  const scrollState = useRef({
+    isDown: false,
+    isHovered: false,
+    startX: 0,
+    scrollLeft: 0,
+    lastX: 0,
+    velocity: 0,
+  });
+
+  // Duplikasi item untuk efek infinite scroll
+  const repeatedTechStacks = [...techStacks, ...techStacks];
+
+  useEffect(() => {
+    let animationId;
+    let isInitialDelay = true;
+    const baseSpeed = 0.5; // Kecepatan auto-scroll
+
+    // Jeda 4 detik di awal agar user bisa membaca tech stack utama
+    const timeoutId = setTimeout(() => {
+      isInitialDelay = false;
+    }, 4000);
+
+    const smoothLoop = () => {
+      if (!techScrollRef.current) return;
+      const state = scrollState.current;
+
+      // Jika tidak sedang ditahan/drag oleh user, jalankan efek momentum & auto-scroll
+      if (!state.isDown) {
+        // Target kecepatan: berhenti jika di-hover / sedang delay awal, berjalan baseSpeed jika dilepas
+        const targetSpeed = (state.isHovered || isInitialDelay) ? 0 : baseSpeed;
+
+        // Logika Momentum (Inertia) - Memperlambat kecepatan geser tangan (velocity) menuju targetSpeed secara perlahan
+        if (state.velocity !== targetSpeed) {
+          state.velocity += (targetSpeed - state.velocity) * 0.04; // Angka 0.04 adalah tingkat kelicinan (friction)
+          
+          if (Math.abs(state.velocity - targetSpeed) < 0.05) {
+            state.velocity = targetSpeed;
+          }
+        }
+
+        // Aplikasikan kecepatan ke elemen
+        if (Math.abs(state.velocity) > 0) {
+          techScrollRef.current.scrollLeft += state.velocity;
+
+          // Looping Infinite Scroll Seamless
+          const halfWidth = techScrollRef.current.scrollWidth / 2;
+          if (techScrollRef.current.scrollLeft >= halfWidth) {
+            techScrollRef.current.scrollLeft -= halfWidth;
+          } else if (techScrollRef.current.scrollLeft <= 0) {
+            techScrollRef.current.scrollLeft += halfWidth;
+          }
+        }
+      }
+
+      animationId = requestAnimationFrame(smoothLoop);
+    };
+
+    animationId = requestAnimationFrame(smoothLoop);
+
+    return () => {
+      clearTimeout(timeoutId);
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
+
+  const onDragStart = (e) => {
+    const state = scrollState.current;
+    state.isHovered = true;
+    state.isDown = true;
+    const pageX = e.pageX || e.touches?.[0]?.pageX;
+    state.startX = pageX - techScrollRef.current.offsetLeft;
+    state.scrollLeft = techScrollRef.current.scrollLeft;
+    state.lastX = pageX;
+    state.velocity = 0; // Hentikan momentum jika disentuh
+  };
+
+  const onDragMove = (e) => {
+    const state = scrollState.current;
+    if (!state.isDown) return;
+    if (e.cancelable) e.preventDefault();
+
+    const pageX = e.pageX || e.touches?.[0]?.pageX;
+    const x = pageX - techScrollRef.current.offsetLeft;
+    const walk = (state.startX - x) * 1.5; 
+
+    techScrollRef.current.scrollLeft = state.scrollLeft + walk;
+
+    // Hitung seberapa cepat mouse bergerak (Velocity) untuk memberikan dorongan akhir
+    const deltaX = state.lastX - pageX;
+    state.velocity = deltaX * 1.5; 
+    state.lastX = pageX;
+
+    // Reset posisi saat di-drag melewatii batas untuk efek infinite scroll tanpa patah
+    const halfWidth = techScrollRef.current.scrollWidth / 2;
+    if (techScrollRef.current.scrollLeft >= halfWidth) {
+      techScrollRef.current.scrollLeft -= halfWidth;
+      state.scrollLeft -= halfWidth; // Geser patokan awal agar tidak meloncat
+    } else if (techScrollRef.current.scrollLeft <= 0) {
+      techScrollRef.current.scrollLeft += halfWidth;
+      state.scrollLeft += halfWidth;
+    }
+  };
+
+  const onDragEnd = () => {
+    scrollState.current.isDown = false;
+    // Mouse dilepas: variabel velocity akan tersimpan, menyebabkan slider meluncur secara natural di dalam requestAnimationFrame
+  };
+
+  const onMouseEnter = () => {
+    scrollState.current.isHovered = true;
+  };
+
+  const onMouseLeave = () => {
+    scrollState.current.isHovered = false;
+    scrollState.current.isDown = false; // Memastikan drag terhenti jika kursor keluar dari batas
+  };
+
   useEffect(() => {
     if (isDark) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
@@ -179,11 +336,40 @@ export default function App() {
   // DATA PENGALAMAN 
   const experiences = [
     {
-      role: "IT Developer",
+      role_en: "Undergraduate Researcher / Software Developer", role_id: "Peneliti Skripsi / Pengembang Software",
+      company: "RSUD Pringsewu",
+      date_en: "Oct 2025 - Jul 2026",
+      date_id: "Okt 2025 - Jul 2026",
+      type_en: "Research", type_id: "Penelitian",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Lambang_Kabupaten_Pringsewu.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      desc_en: "Conducted field research and developed 'Si-Gizi', a web-based information system for calculating patient nutritional values using the Rapid Application Development (RAD) methodology.",
+      desc_id: "Melakukan penelitian lapangan dan mengembangkan 'Si-Gizi', sebuah sistem informasi berbasis web untuk perhitungan nilai gizi pasien menggunakan metode Rapid Application Development (RAD).",
+      long_desc_en: "This research was conducted as part of my undergraduate thesis at the Nutrition Installation of RSUD Pringsewu. The main objective was to identify problems in the manual nutritional calculation process and build a digital solution called 'Si-Gizi'. The development process involved frequent field visits to discuss requirements with the Head of the Nutrition Installation and the nutrition staff. By utilizing the Rapid Application Development (RAD) methodology, the system was built iteratively. Each iteration included gathering direct feedback from the staff, refining the application, and re-evaluating it until the system fully met their requirements and was officially approved.",
+      long_desc_id: "Penelitian ini dilakukan sebagai bagian dari pengerjaan skripsi saya di Instalasi Gizi RSUD Pringsewu. Tujuan utamanya adalah mengidentifikasi permasalahan pada proses perhitungan gizi dan membangun solusi digital bernama 'Si-Gizi'. Proses pengembangannya melibatkan banyak kunjungan lapangan untuk berdiskusi dengan Kepala Instalasi Gizi dan para staf ahli gizi. Dengan menggunakan metode Rapid Application Development (RAD), sistem dibangun secara iteratif. Setiap iterasi mencakup pengumpulan feedback langsung dari staf gizi, penyempurnaan aplikasi, dan evaluasi ulang hingga sistem sepenuhnya di-ACC oleh pihak rumah sakit. Kunjungan terakhir dilakukan untuk finalisasi, perpisahan, serta penjelasan cara penggunaan sistem.",
+      tasks_en: [
+        "Conducted interviews and discussions with the Head of Nutrition and staff to analyze the hospital's specific needs.",
+        "Designed the architecture and user interface for the Si-Gizi application prior to the development phase.",
+        "Developed the application through multiple iterations, directly incorporating user feedback after every field test to ensure high usability.",
+        "Handed over the finalized system, provided a comprehensive explanation of its usage, and officially concluded the research."
+      ],
+      tasks_id: [
+        "Melakukan wawancara dan diskusi dengan Kepala Instalasi Gizi beserta staf untuk menganalisis kebutuhan spesifik rumah sakit.",
+        "Merancang arsitektur dan antarmuka pengguna (UI/UX) untuk aplikasi Si-Gizi sebelum masuk ke tahap pengembangan.",
+        "Mengembangkan aplikasi melalui beberapa siklus iterasi, langsung mengimplementasikan feedback pengguna setelah setiap uji lapangan.",
+        "Menyerahkan sistem yang telah selesai, memberikan penjelasan komprehensif tentang penggunaannya kepada staf, dan menyelesaikan masa penelitian."
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/EFFzgK9.jpeg", caption_en: "With the Head of Nutrition Installation and Thesis Teammates", caption_id: "Bersama Kepala Instalasi Gizi dan Rekan Tim Skripsi" },
+        { url: "https://i.imgur.com/yslnJLk.jpeg", caption_en: "Discussion session with the Head of Nutrition Installation", caption_id: "Sesi diskusi bersama Kepala Instalasi Gizi" },
+        { url: "https://i.imgur.com/xu4qblE.jpeg", caption_en: "Identifying problems and gathering user feedback for system iterations", caption_id: "Mengidentifikasi masalah dan mengumpulkan feedback pengguna untuk iterasi sistem" }
+      ]
+    },
+    {
+      role_en: "IT Developer", role_id: "Pengembang IT",
       company: "PTPN I Regional 7",
       date_en: "Jun 2025 - Aug 2025", 
       date_id: "Jun 2025 - Agu 2025",
-      type_en: "Internship", type_id: "Magang",
+      type_en: "Internship", type_id: "Praktik Kerja Lapangan",
       logo: "https://i.imgur.com/g7bx2jI.png",
       desc_en: "Developed 'Simpelkes' (Sistem Pelaporan Kesehatan). Transitioned the company clinic's manual health reporting, pharmacy, and cost recapitulation from Excel to a centralized web system.",
       desc_id: "Mengembangkan 'Simpelkes' (Sistem Pelaporan Kesehatan). Mendigitalisasi laporan kesehatan, farmasi, dan rekapitulasi biaya klinik perusahaan dari Excel ke sistem web terpusat.",
@@ -216,7 +402,39 @@ export default function App() {
       ]
     },
     {
-      role: "Head of Project & Video Editor",
+      role_en: "Cloud Computing Cohort", role_id: "Kohort Cloud Computing",
+      company: "Bangkit Academy 2024 By Google, GoTo, Traveloka",
+      date_en: "Sep 2024 - Dec 2024", 
+      date_id: "Sep 2024 - Des 2024",
+      type_en: "Independent Study", type_id: "Studi Independen (MSIB)",
+      logo: "https://i.imgur.com/pPIMw37.png", // Menggunakan logo sertifikat Bangkit Anda
+      desc_en: "Graduated from the intensive Cloud Computing learning path. Mastered Google Cloud infrastructure, developed RESTful APIs, and collaborated on a machine-learning integrated capstone project.",
+      desc_id: "Lulusan jalur pembelajaran Cloud Computing intensif. Menguasai infrastruktur Google Cloud, mengembangkan RESTful API, dan berkolaborasi dalam proyek capstone yang terintegrasi dengan machine learning.",
+      long_desc_en: "Completed a rigorous 900+ hour Independent Study (MSIB) program specializing in Cloud Computing. The curriculum extensively covered Google Cloud Platform (GCP) services, DevOps, Site Reliability Engineering (SRE), and backend API development using Node.js and Express.js. Actively participated in weekly consultations and Instructor-Led Training (ILT) sessions for technical skills, soft skills (Critical Thinking, Project Management), and professional English. The program culminated in a collaborative product-based capstone project where I architected the cloud infrastructure and built scalable backend services to integrate with a machine learning model.",
+      long_desc_id: "Menyelesaikan program Studi Independen (MSIB) intensif lebih dari 900 jam dengan spesialisasi Cloud Computing. Kurikulum mencakup layanan Google Cloud Platform (GCP), DevOps, Site Reliability Engineering (SRE), dan pengembangan backend API menggunakan Node.js dan Express.js. Aktif berpartisipasi dalam konsultasi mingguan (Weekly Consultation) dan sesi Instructor-Led Training (ILT) untuk keterampilan teknis, soft skill (Critical Thinking, Project Management), dan bahasa Inggris profesional. Program ini diakhiri dengan proyek capstone berbasis produk di mana saya merancang infrastruktur cloud dan membangun layanan backend scalable untuk diintegrasikan dengan model machine learning.",
+      tasks_en: [
+        "Architected and provisioned scalable cloud infrastructure on Google Cloud Platform, utilizing Compute Engine, Cloud SQL, Cloud Storage, and Cloud Run.",
+        "Developed and deployed robust RESTful APIs using Node.js and Express.js for the final product-based capstone project.",
+        "Implemented DevOps practices, load balancing, and network security protocols based on Google Cloud best practices.",
+        "Actively engaged in comprehensive ILT sessions covering Cloud Computing (CC), Soft Skills (SS), and Professional English (EN).",
+        "Earned the Google Cloud Computing Foundations Certificate and completed multiple advanced skill badges in infrastructure modernization."
+      ],
+      tasks_id: [
+        "Merancang dan melakukan provisioning infrastruktur cloud yang scalable di Google Cloud Platform, memanfaatkan Compute Engine, Cloud SQL, Cloud Storage, dan Cloud Run.",
+        "Mengembangkan dan melakukan deployment RESTful API yang tangguh menggunakan Node.js dan Express.js untuk proyek akhir capstone.",
+        "Mengimplementasikan praktik DevOps, load balancing, serta protokol keamanan jaringan berdasarkan praktik terbaik Google Cloud.",
+        "Berperan aktif dalam sesi ILT komprehensif yang mencakup materi teknis Cloud Computing (CC), Soft Skill (SS), dan Bahasa Inggris (EN).",
+        "Meraih sertifikasi Google Cloud Computing Foundations dan menyelesaikan berbagai skill badge lanjutan dalam modernisasi infrastruktur dan SRE."
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/7XFH9Qu.png", caption_en: "Bangkit Academy Official Certificate of Completion", caption_id: "Sertifikat Kelulusan Resmi Bangkit Academy" },
+        { url: "https://i.imgur.com/xuCGosj.png", caption_en: "Instructor-Led Training (ILT) Cloud Computing Session", caption_id: "Sesi Instructor-Led Training (ILT) Cloud Computing" }, 
+        { url: "https://i.imgur.com/PlLN1lC.png", caption_en: "Weekly Consultation Session", caption_id: "Konsultasi Mingguan & Rapat Proyek Capstone" },
+        { url: "https://i.imgur.com/d7EkvG3.png", caption_en: "Capstone Project Meeting Session with Instructor", caption_id: "Sesi Meet Proyek Capstone dengan Pembimbing" }
+      ]
+    },
+    {
+      role_en: "Head of Project & Video Editor", role_id: "Ketua Pelaksana Program Kerja & Editor Video",
       company: "Himatro Unila",
       date_en: "Mar 2023 - Feb 2025", 
       date_id: "Mar 2023 - Feb 2025",
@@ -251,7 +469,7 @@ export default function App() {
       ]
     },
     {
-      role: "Graphic Designer & Print Operator",
+      role_en: "Graphic Designer & Print Operator", role_id: "Desainer Grafis & Operator Cetak",
       company: "Futura Digital Printing",
       date_en: "Jul 2021 - Nov 2021",
       date_id: "Jul 2021 - Nov 2021",
@@ -487,7 +705,8 @@ export default function App() {
       long_desc_en: "Dwitin is a personal financial tracking application developed as a Product-based Capstone Project for Bangkit Academy 2024. The app helps users track daily income and expenses, automatically calculating total balances to build better financial habits. A standout feature is the integration of an Optical Character Recognition (OCR) machine learning model that allows users to scan shopping receipts via camera or gallery; the AI automatically extracts the transaction name, total amount, and date. Built collaboratively, the backend is powered by Node.js and Express.js, hosted on a statically-IP-configured Google Compute Engine, utilizing Google Cloud SQL for relational data and Cloud Storage buckets for saving receipt images and user profiles.",
       long_desc_id: "Dwitin adalah aplikasi pelacakan keuangan pribadi yang dikembangkan sebagai Capstone Project Bangkit Academy 2024. Aplikasi ini membantu pengguna mencatat pemasukan dan pengeluaran, serta menghitung total saldo secara otomatis untuk membentuk kebiasaan finansial yang lebih baik. Fitur unggulan dari aplikasi ini adalah integrasi model machine learning Optical Character Recognition (OCR) yang memungkinkan pengguna memindai struk belanja (melalui kamera atau galeri); AI akan secara otomatis mengekstrak nama transaksi, total pengeluaran, dan tanggal. Dibangun secara kolaboratif, backend aplikasi ini ditenagai oleh Node.js dan Express.js, di-host pada Google Compute Engine dengan konfigurasi IP Statis, serta memanfaatkan Google Cloud SQL (MySQL) dan Google Cloud Storage (Bucket) untuk menyimpan gambar struk dan foto profil pengguna.",
       thumbnail: "https://i.imgur.com/6E5uR7H.png", 
-      githubUrl: "https://github.com/Sealonk/dwitin-backend.git", 
+      githubUrl: "https://github.com/Sealonk/dwitin-backend.git",
+      youtubeEmbedId: "zJHnuPa6y74",
       sliderImages: [
         "https://i.imgur.com/u1K7cvi.png", "https://i.imgur.com/CDoR6Ey.png", "https://i.imgur.com/X8Hze3L.png",
         "https://i.imgur.com/WsEGj5p.png", "https://i.imgur.com/knzrYk2.png", "https://i.imgur.com/8A7kyOS.png",
@@ -515,10 +734,85 @@ export default function App() {
         { url: "https://i.imgur.com/N9H2S7Q.png", caption_en: "Auto-filled Transaction Data from OCR", caption_id: "Data Transaksi Terisi Otomatis dari Hasil OCR" },
         { url: "https://i.imgur.com/0snaF1W.png", caption_en: "RESTful API Endpoints Mapping on Postman", caption_id: "Pemetaan Endpoint RESTful API pada Postman" }
       ]
+    },
+    {
+      id: "proj-4",
+      title_en: "Smart Poultry Farm IoT System",
+      title_id: "Sistem IoT Smart Poultry Farm",
+      category_en: "Internet of Things (IoT)",
+      category_id: "Internet of Things (IoT)",
+      techList: [
+        "NodeMCU ESP8266", "Node-RED", "MQTT", "C++", "DHT11", "HC-SR04", "MQ-135"
+      ],
+      desc_en: "An IoT-based poultry farm prototype utilizing NodeMCU to monitor temperature, humidity, air quality, and feed levels, with automated climate control via Node-RED.",
+      desc_id: "Prototipe kandang ayam berbasis IoT menggunakan NodeMCU untuk memantau suhu, kelembapan, kualitas udara, dan ketersediaan pakan, dilengkapi kontrol iklim otomatis via Node-RED.",
+      long_desc_en: "This project is a smart poultry farm prototype designed to optimize broiler chicken farming environments. It monitors environmental parameters using a DHT11 sensor (temperature and humidity) and an MQ-135 sensor (air quality), while an HC-SR04 ultrasonic sensor tracks chicken feed availability. The system automatically activates a heating lamp if the temperature drops below 32°C and turns on an exhaust fan if it exceeds 33°C to maintain an ideal climate. All real-time data and manual override controls are accessible remotely through an interactive Node-RED web dashboard integrated via the MQTT protocol.",
+      long_desc_id: "Proyek ini adalah prototipe peternakan ayam pintar yang dirancang untuk mengoptimalkan lingkungan peternakan ayam broiler. Sistem ini memantau parameter lingkungan menggunakan sensor DHT11 (suhu dan kelembapan) dan sensor MQ-135 (kualitas udara), sementara sensor ultrasonik HC-SR04 melacak ketersediaan pakan ayam. Sistem secara otomatis menyalakan lampu pemanas jika suhu turun di bawah 32°C dan menyalakan kipas exhaust jika suhu melebihi 33°C untuk menjaga iklim ideal. Seluruh data real-time dan kontrol manual dapat diakses dari jarak jauh melalui dashboard web interaktif Node-RED yang terintegrasi menggunakan protokol MQTT.",
+      thumbnail: "https://i.imgur.com/GKuIxkN.png", 
+      githubUrl: "", // Isi dengan link repo GitHub Anda jika ada, atau kosongkan
+      youtubeEmbedId: "YVq0jLjyz3Y", 
+      sliderImages: [
+        "https://i.imgur.com/2JOmhD9.png", "https://i.imgur.com/wWTWPbO.png"
+      ],
+      role_en: [
+        "Assembled and wired the NodeMCU ESP8266 microcontroller with DHT11, MQ-135, and HC-SR04 sensors, alongside a 2-channel relay for the exhaust fan and heating lamp.",
+        "Programmed the C++ algorithm to automatically trigger the heater (< 32°C) or exhaust fan (> 33°C) based on real-time sensor readings.",
+        "Designed an interactive web dashboard using Node-RED to visualize temperature charts, humidity gauges, feed distance, and air quality status.",
+        "Configured the MQTT broker and PubSubClient library for seamless, low-latency data transmission between the hardware and the Node-RED interface."
+      ],
+      role_id: [
+        "Merakit dan menghubungkan mikrokontroler NodeMCU ESP8266 dengan sensor DHT11, MQ-135, dan HC-SR04, beserta relay 2-channel untuk kipas exhaust dan lampu pemanas.",
+        "Memprogram algoritma C++ untuk memicu pemanas secara otomatis (< 32°C) atau kipas exhaust (> 33°C) berdasarkan pembacaan sensor secara real-time.",
+        "Merancang dashboard web interaktif menggunakan Node-RED untuk memvisualisasikan grafik suhu, meteran kelembapan, jarak pakan, dan status kualitas udara.",
+        "Mengonfigurasi broker MQTT dan library PubSubClient untuk transmisi data yang lancar dan minim latensi antara perangkat keras dan antarmuka Node-RED."
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/OcVQHjF.jpeg", caption_en: "Node-RED Web Monitoring Dashboard", caption_id: "Dashboard Monitoring Web Node-RED" },
+        { url: "https://i.imgur.com/B3b0Sfy.png", caption_en: "Hardware Setup with Heating Lamp Activated", caption_id: "Perakitan Hardware dengan Lampu Pemanas Menyala" },
+        { url: "https://i.imgur.com/riawBV5.png", caption_en: "Relay and Sensor Wiring Testing", caption_id: "Pengujian Pengkabelan Relay dan Sensor" },
+        { url: "https://i.imgur.com/eiJeyst.png", caption_en: "Hardware Assembly Process", caption_id: "Proses Perakitan Perangkat Keras" }
+      ]
+    },
+    {
+      id: "proj-5",
+      title_en: "Automatic Water Tank Control System",
+      title_id: "Sistem Pengendali Tangki Air Otomatis",
+      category_en: "Embedded Systems",
+      category_id: "Sistem Tertanam",
+      techList: [
+        "Arduino Uno", "C++", "HC-SR04", "Relay", "LCD I2C", "DC Water Pump"
+      ],
+      desc_en: "An Arduino-based embedded system utilizing an ultrasonic sensor to monitor water levels and automatically control a water pump to prevent overflow.",
+      desc_id: "Sistem tertanam berbasis Arduino yang menggunakan sensor ultrasonik untuk memantau ketinggian air dan mengendalikan pompa air secara otomatis.",
+      long_desc_en: "This project is an automated water pump control system designed to monitor and manage water tank levels using an Arduino Uno microcontroller and an HC-SR04 ultrasonic sensor. The system automatically turns on the water pump when the water level drops to a certain threshold (≥15 cm from the sensor) and turns it off when the tank is full (≤13 cm from the sensor). It also features an I2C LCD display that provides real-time water level distance readings.",
+      long_desc_id: "Proyek ini adalah sistem pengendali pompa air otomatis yang dirancang untuk memantau dan mengelola volume tangki air menggunakan mikrokontroler Arduino Uno dan sensor ultrasonik HC-SR04. Sistem secara otomatis menyalakan pompa air ketika ketinggian air turun ke ambang batas tertentu (jarak ≥15 cm dari sensor) dan mematikannya saat tangki penuh (jarak ≤13 cm dari sensor). Proyek ini juga dilengkapi layar LCD I2C yang memberikan pembacaan jarak ketinggian air secara real-time.",
+      thumbnail: "https://i.imgur.com/sSTlcFa.jpeg", 
+      githubUrl: "https://github.com/username-anda/repo-sistem-air", 
+      youtubeEmbedId: "uyIR0RMBiFs", 
+      sliderImages: [
+        "https://i.imgur.com/ZyunwKJ.png", "https://i.imgur.com/L8FOFRQ.png", "https://i.imgur.com/E0txKKF.png",
+        
+      ],
+      role_en: [
+        "Uses HC-SR04 to continuously measure the distance to the water surface.",
+        "Triggers a relay to turn the pump ON when empty (≥ 15 cm) and OFF when full (≤ 13 cm).",
+        "Displays real-time distance measurements on an I2C LCD screen.",
+        "Uses a relay to isolate the low-voltage Arduino circuit from the higher-voltage pump power supply."
+      ],
+      role_id: [
+        "Menggunakan HC-SR04 untuk terus mengukur jarak ke permukaan air.",
+        "Memicu relay untuk menyalakan pompa saat kosong (≥ 15 cm) dan mematikannya saat penuh (≤ 13 cm).",
+        "Menampilkan pengukuran jarak secara real-time pada layar LCD I2C.",
+        "Menggunakan relay untuk mengisolasi sirkuit Arduino bertegangan rendah dari tegangan pompa."
+      ],
+      gallery: [
+        { url: "https://i.imgur.com/SlAt8ak.png", caption_en: "System Prototype Front View", caption_id: "Tampak Depan Prototipe Sistem" },
+        { url: "https://i.imgur.com/sSTlcFa.jpeg", caption_en: "Hardware Wiring and Setup", caption_id: "Pengkabelan dan Perakitan Perangkat Keras" }
+      ]
     }
   ];
 
-  // DATA AWARDS & PENGHARGAAN (Section Baru)
+  // DATA AWARDS & PENGHARGAAN 
   const awardsData = [
     {
       title_en: "Cum Laude Graduation Honors", title_id: "Predikat Kelulusan Pujian (Cum Laude)",
@@ -690,6 +984,8 @@ export default function App() {
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .animate-pop-in { animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
       {/* NAVBAR */}
@@ -831,30 +1127,30 @@ export default function App() {
       </section>
 
       {/* TECH STACK SECTION */}
-      <section id="section-1" className="py-16 md:py-20 px-6 sm:px-10 md:px-12 max-w-7xl mx-auto scroll-mt-16 md:scroll-mt-20">
+      <section id="section-1" className="py-16 md:py-20 px-6 sm:px-10 md:px-12 max-w-7xl mx-auto scroll-mt-16 md:scroll-mt-20 overflow-hidden">
         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-10 tracking-tight text-center md:text-left">
           {content.sectionSkills}
         </h2>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
-          {[
-            { name: 'Google Cloud', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
-            { name: 'AWS', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', invertDark: true },
-            { name: 'Azure', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
-            { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
-            { name: 'Express.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg', invertDark: true },
-            { name: 'MySQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
-            { name: 'FastAPI', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
-            { name: 'Laravel', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg' },
-            { name: 'React.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-            { name: 'Microsoft Word', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Word_%282019%E2%80%932025%29.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail' },
-            { name: 'Microsoft Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail' },
-            { name: 'Microsoft PowerPoint', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg/960px-Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail' }
-          ].map((tech, idx) => (
-            <div key={idx} className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 md:gap-4 p-2 md:p-4 border border-gray-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-medium shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-slate-700 transition-all cursor-default group overflow-hidden">
+        
+        {/* PERBAIKAN PADA EVENT HANDLERS */}
+        <div
+          ref={techScrollRef}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onMouseDown={onDragStart}
+          onMouseUp={onDragEnd}
+          onMouseMove={onDragMove}
+          onTouchStart={onDragStart}
+          onTouchEnd={onDragEnd}
+          onTouchMove={onDragMove}
+          className="grid grid-rows-4 md:grid-rows-3 grid-flow-col gap-3 md:gap-4 overflow-x-auto pb-4 hide-scroll cursor-grab active:cursor-grabbing select-none"
+        >
+          {repeatedTechStacks.map((tech, idx) => (
+            <div key={idx} className="w-[calc((95vw-3.5rem)/3)] max-w-[130px] md:max-w-none md:w-[184px] flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 md:gap-4 p-2 md:p-3 border border-gray-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-medium shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-slate-700 transition-all pointer-events-none">
               <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 shrink-0 flex items-center justify-center">
-                <img src={tech.logo} alt={`${tech.name} logo`} className={`w-full h-full object-contain group-hover:scale-110 transition-transform ${tech.invertDark ? 'dark:invert opacity-80' : ''}`} />
+                <img src={tech.logo} alt={`${tech.name} logo`} draggable="false" className={`w-full h-full object-contain ${tech.invertDark ? 'dark:invert opacity-80' : ''}`} />
               </div>
-              <span className="text-[9px] sm:text-[11px] md:text-base truncate w-full text-center md:text-left">{tech.name}</span>
+              <span className="text-[8px] sm:text-[10px] md:text-sm truncate w-full text-center md:text-left leading-tight">{tech.name}</span>
             </div>
           ))}
         </div>
@@ -938,7 +1234,7 @@ export default function App() {
                         {lang === 'en' ? exp.type_en : exp.type_id}
                       </span>
                       <h3 className="text-[11px] sm:text-xs md:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
-                        {exp.role}
+                        {(lang === 'en' ? exp.role_en : exp.role_id)}
                       </h3>
                       <p className="text-[9px] md:text-sm text-blue-600 dark:text-cyan-400 font-medium mt-0.5 md:mt-1">
                         {exp.company}
@@ -974,15 +1270,16 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight">{content.sectionProj}</h2>
           
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+          {/* PERBAIKAN: Menambahkan 'justify-center' pada grid flex layout */}
+          <div className="flex flex-wrap justify-center gap-3 md:gap-8">
             {projectsData.map((proj, idx) => (
               <div 
                 key={idx} 
-                className={`group flex flex-col cursor-pointer border border-gray-200 dark:border-slate-800 rounded-xl md:rounded-2xl p-2 md:p-4 active:scale-[0.98] md:active:scale-100 hover:shadow-xl transition-all bg-white dark:bg-slate-950 h-full ${idx === 2 && projectsData.length === 3 ? 'col-span-2 lg:col-span-1 mx-auto lg:mx-0 w-[calc(50%-0.375rem)] lg:w-full' : ''}`}
+                className={`group flex flex-col cursor-pointer border border-gray-200 dark:border-slate-800 rounded-xl md:rounded-2xl p-2 md:p-4 active:scale-[0.98] md:active:scale-100 hover:shadow-xl transition-all bg-white dark:bg-slate-950 h-full w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-1.35rem)] ${idx === 2 && projectsData.length === 3 ? 'mx-auto lg:mx-0 w-full lg:w-[calc(33.333%-1.35rem)]' : ''}`}
                 onClick={() => setSelectedProject(proj)}
               >
                 <div className="aspect-video bg-gray-100 dark:bg-slate-900 rounded-md md:rounded-xl mb-2 md:mb-4 overflow-hidden relative">
-                   <img src={proj.thumbnail} alt={proj.title_en} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                   <img src={proj.thumbnail} alt={lang === 'en' ? proj.title_en : proj.title_id} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                    <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
                       <span className="bg-blue-600 text-white px-2 py-1 md:px-4 md:py-2 rounded-full text-[9px] md:text-sm font-bold flex items-center gap-1 md:gap-2 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">
                         {content.btnView} <ExternalLink size={12} className="md:w-3.5 md:h-3.5" />
@@ -1021,7 +1318,6 @@ export default function App() {
       </section>
 
       {/* AWARDS SECTION (NEW) */}
-      {/* AWARDS SECTION */}
       <section id="section-5" className="w-full bg-white dark:bg-slate-950 py-12 md:py-20 scroll-mt-10 md:scroll-mt-16">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-12">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 md:mb-12 tracking-tight flex items-center gap-2.5 md:gap-3">
@@ -1270,7 +1566,7 @@ export default function App() {
                 <div className="w-16 h-16 md:w-32 md:h-32 shrink-0 rounded-xl md:rounded-2xl bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 flex items-center justify-center overflow-hidden mb-3 md:mb-5 shadow-sm">
                   {selectedExp.logo === "ICON_PRINTER" ? <Printer size={32} className="md:w-12 md:h-12 text-slate-400 dark:text-slate-500" /> : <img src={selectedExp.logo} alt="Logo" className="w-full h-full object-contain p-2 md:p-3" />}
                 </div>
-                <h3 className="text-lg md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight mb-1.5 md:mb-2">{selectedExp.role}</h3>
+                <h3 className="text-lg md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight mb-1.5 md:mb-2">{lang === 'en' ? selectedExp.role_en : selectedExp.role_id}</h3>
                 <p className="text-sm md:text-lg text-blue-600 dark:text-cyan-400 font-semibold mb-2.5 md:mb-3">{selectedExp.company}</p>
                 <span className="px-3 py-1 md:px-4 md:py-1.5 text-[10px] md:text-xs font-mono bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg border border-gray-200 dark:border-slate-700">{lang === 'en' ? selectedExp.date_en : selectedExp.date_id}</span>
               </div>
@@ -1411,6 +1707,23 @@ export default function App() {
                       </ul>
                     </div>
                   )}
+                  {selectedProject.youtubeEmbedId && (
+                    <div>
+                      <h4 className="text-base md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-5">
+                        {lang === 'en' ? 'Video' : 'Video'}
+                      </h4>
+                      <div className="relative w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-slate-900 shadow-md border border-gray-200 dark:border-slate-800">
+                        <iframe
+                          className="absolute top-0 left-0 w-full h-full"
+                          src={`https://www.youtube.com/embed/${selectedProject.youtubeEmbedId}`}
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    </div>
+                  )}
                   {selectedProject.gallery && selectedProject.gallery.length > 0 && (
                     <div>
                       <h4 className="text-base md:text-2xl font-bold text-slate-900 dark:text-white mb-3 md:mb-5">{lang === 'en' ? 'Gallery' : 'Galeri'}</h4>
@@ -1471,13 +1784,41 @@ export default function App() {
           <p className="text-xs md:text-lg text-slate-600 dark:text-slate-400 mb-6 md:mb-10 max-w-2xl mx-auto px-2 md:px-0">
             {content.contactDesc}
           </p>
-          <div className="flex flex-row justify-center gap-3 md:gap-6">
-            <a href="mailto:aloysiusandrenhm@gmail.com" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-8 md:py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
-              <Mail size={14} className="md:w-5 md:h-5" /> {content.emailMe}
-            </a>
-            <a href="https://wa.me/6289618927443" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-8 md:py-4 bg-[#25D366] text-white rounded-full text-[11px] md:text-base font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
-              <Smartphone size={14} className="md:w-5 md:h-5" /> WhatsApp
-            </a>
+          
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+            
+            {/* Baris 2 di Mobile (Instagram & YouTube) / Baris yang sama di Desktop */}
+            {/* PERBAIKAN: Dibungkus div flex agar sejajar di mobile, sama seperti Email & WA */}
+            <div className="order-2 md:order-1 flex flex-wrap justify-center gap-3 md:gap-6">
+               <a href="https://www.instagram.com/aloysius_andre4" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-full text-[11px] md:text-sm font-bold active:scale-95 hover:scale-105 transition-transform shadow-sm hover:shadow-md">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" alt="Instagram" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
+                 Instagram
+               </a>
+               {/* YouTube di Mobile (tampil sejajar dengan Instagram) */}
+               <a href="https://www.youtube.com/@aloysiusandrenhm" target="_blank" rel="noreferrer" className="flex md:hidden items-center justify-center gap-1.5 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-full text-[11px] md:text-sm font-bold active:scale-95 hover:scale-105 transition-transform shadow-sm hover:shadow-md">
+                 <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/3840px-YouTube_full-color_icon_%282017%29.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" alt="YouTube" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
+                 YouTube
+               </a>
+            </div>
+
+            {/* Baris 1 di Mobile (Email & WhatsApp) / Di tengah pada Desktop */}
+            <div className="order-1 md:order-2 flex flex-wrap justify-center gap-3 md:gap-6">
+              <a href="mailto:aloysiusandrenhm@gmail.com" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-6 md:py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-[11px] md:text-sm font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
+                <Mail size={16} className="md:w-5 md:h-5" /> {content.emailMe}
+              </a>
+              <a href="https://wa.me/6289618927443" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2.5 md:px-6 md:py-3.5 bg-[#25D366] text-white rounded-full text-[11px] md:text-sm font-bold active:scale-95 hover:scale-105 transition-transform shadow-lg">
+                <Smartphone size={16} className="md:w-5 md:h-5" /> WhatsApp
+              </a>
+            </div>
+
+            {/* YouTube di Desktop (tampil di paling kanan) */}
+            <div className="order-3 md:order-3 flex items-center justify-center gap-3 md:gap-6">
+               <a href="https://www.youtube.com/@aloysiusandrenhm" target="_blank" rel="noreferrer" className="hidden md:flex items-center justify-center gap-1.5 md:gap-3 px-4 py-2 md:px-6 md:py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-full text-[11px] md:text-sm font-bold active:scale-95 hover:scale-105 transition-transform shadow-sm hover:shadow-md">
+                 <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/3840px-YouTube_full-color_icon_%282017%29.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" alt="YouTube" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
+                 YouTube
+               </a>
+            </div>
+            
           </div>
         </div>
       </section>
