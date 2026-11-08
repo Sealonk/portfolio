@@ -131,6 +131,10 @@ export default function App() {
     { name: 'MQTT', logo: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mqtt.png' },
     { name: 'Blynk', logo: 'https://cdn.prod.website-files.com/6272e11601c9e296becde07b/68ab9db5a7288b7cca77e049_Sign.png' },
     { name: 'Proteus', logo: 'https://upload.wikimedia.org/wikipedia/en/5/5a/Proteus_Design_Suite_Atom_Logo.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original' },
+    { name: 'Premiere Pro', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Adobe_Premiere_Pro_CC_2026_icon.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original' },
+    { name: 'Photoshop', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Adobe_Photoshop_CC_2026_icon.svg/250px-Adobe_Photoshop_CC_2026_icon.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail' },
+    { name: 'CorelDRAW', logo: 'https://images.seeklogo.com/logo-png/24/2/coreldraw-x7-logo-png_seeklogo-248595.png' },
+    { name: 'Canva', logo: 'https://static.freepnglogo.com/images/all_img/1691829322canva-app-logo-png.png'},
     { name: 'MS Word', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Word_%282019%E2%80%932025%29.svg.png' },
     { name: 'MS Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png' },
     { name: 'MS PowerPoint', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg/960px-Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg.png' }
