@@ -136,8 +136,7 @@ export default function App() {
     { name: 'CorelDRAW', logo: 'https://images.seeklogo.com/logo-png/24/2/coreldraw-x7-logo-png_seeklogo-248595.png' },
     { name: 'Canva', logo: 'https://static.freepnglogo.com/images/all_img/1691829322canva-app-logo-png.png'},
     { name: 'MS Word', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg/1280px-Microsoft_Office_Word_%282019%E2%80%932025%29.svg.png' },
-    { name: 'MS Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png' },
-    { name: 'MS PowerPoint', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg/960px-Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg.png' }
+    { name: 'MS Excel', logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/1280px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png' }
   ];
 
   // LOGIKA SLIDER OTOMATIS & DRAG TECH STACK (INFINITE SCROLL)
